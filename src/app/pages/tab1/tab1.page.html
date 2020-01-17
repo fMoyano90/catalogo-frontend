@@ -1,0 +1,29 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon slot="icon-only" name="hand"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      Catalogo Codelco Andina
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content color="light">
+  <ion-searchbar placeholder="Busca un Epp"></ion-searchbar>
+
+  <!--Refresher-->
+  <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!--Productos-->
+  <app-productos [productos]="productos"></app-productos>
+  <!--Infinite Scroll-->
+  <ion-infinite-scroll
+    [disabled]="!habilitado"
+    threshold="150px"
+    (ionInfinite)="siguientes($event)"
+  >
+    <ion-infinite-scroll-content> </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,0 +1,35 @@
+<div class="producto">
+  <ion-item>
+    <ion-label>
+      <h3>
+        <small>
+          <b> {{ producto.categoria }} (Cod: {{ producto.material }}) </b>
+        </small>
+      </h3>
+
+      <h4 text-wrap>{{ producto.descripcion }}</h4>
+    </ion-label>
+  </ion-item>
+  <ion-slides pager="true">
+    <ion-slide class="image-slide" [style]="img1 | domSanitizer"> </ion-slide>
+    <ion-slide
+      class="image-slide"
+      style="background-image: url('/assets/guante.jpg')"
+    >
+    </ion-slide>
+    <ion-slide
+      class="image-slide"
+      style="background-image: url('/assets/guante.jpg')"
+    >
+    </ion-slide>
+  </ion-slides>
+  <ion-item>
+    <ion-label slot="start">
+      <h4>{{ producto.medida }}</h4>
+    </ion-label>
+
+    <ion-label slot="end">
+      <h4>{{ producto.genero }}</h4>
+    </ion-label>
+  </ion-item>
+</div>
