@@ -22,4 +22,7 @@ export interface Usuario {
   email?: string;
   avatar?: string;
   role?: string;
+  sap?: string;
+  rut?: string;
+  password?: string;
 }

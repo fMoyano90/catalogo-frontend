@@ -5,5 +5,19 @@ $success: rgb(48, 145, 10);
     color: $success;
     text-decoration: none;
     cursor: pointer;
+    ion-icon {
+      font-size: 21px;
+    }
+  }
+}
+
+.agregar {
+  a {
+    color: rgb(82, 81, 81);
+    text-decoration: none;
+    cursor: pointer;
+    ion-icon {
+      font-size: 18px;
+    }
   }
 }

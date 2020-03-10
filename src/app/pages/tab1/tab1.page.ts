@@ -15,6 +15,9 @@ export class Tab1Page implements OnInit {
 
   ngOnInit() {
     this.siguientes();
+    this.productosService.nuevoProducto.subscribe(epp => {
+      this.productos.unshift(epp);
+    });
   }
 
   recargar(event: any) {

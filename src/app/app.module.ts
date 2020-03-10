@@ -12,6 +12,11 @@ import { IonicStorageModule } from "@ionic/storage";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+// app.module.ts
+// Usar camara
+import { Camera } from "@ionic-native/camera/ngx";
+// Subir archivos
+import { FileTransfer } from "@ionic-native/file-transfer/ngx";
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +31,8 @@ import { AppComponent } from "./app.component";
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
+    FileTransfer,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

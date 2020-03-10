@@ -14,23 +14,13 @@
             <ion-col>
               <ion-list>
                 <ion-item>
-                  <ion-label>N° SAP</ion-label>
-                  <ion-input
-                    name="email"
-                    type="email"
-                    [(ngModel)]="loginUser.email"
-                    required
-                  ></ion-input>
+                  <ion-label>Email</ion-label>
+                  <ion-input name="email" type="email" [(ngModel)]="loginUser.email" required></ion-input>
                 </ion-item>
 
                 <ion-item>
                   <ion-label>Contraseña</ion-label>
-                  <ion-input
-                    name="password"
-                    type="password"
-                    [(ngModel)]="loginUser.email"
-                    required
-                  ></ion-input>
+                  <ion-input name="password" type="password" [(ngModel)]="loginUser.password" required></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -63,12 +53,9 @@
             <ion-slides>
               <ion-slide *ngFor="let avatar of avatars">
                 <ion-item>
-                  <ion-img
-                    class="pick-avatar"
-                    src="/assets/avatars/{{avatar.img}}"
-                    [ngClass]="{'pick-avatar-seleccionado': avatar.seleccionado}"
-                    (click)="seleccionarAvatar( avatar )"
-                  ></ion-img>
+                  <ion-img class="pick-avatar" src="/assets/avatars/{{avatar.img}}"
+                    [ngClass]="{'pick-avatar-seleccionado': avatar.seleccionado}" (click)="seleccionarAvatar( avatar )">
+                  </ion-img>
                 </ion-item>
               </ion-slide>
             </ion-slides>
@@ -80,32 +67,28 @@
             <ion-col>
               <ion-list>
                 <ion-item>
-                  <ion-label>N° SAP</ion-label>
-                  <ion-input name="email" type="email" required></ion-input>
-                </ion-item>
-
-                <ion-item>
                   <ion-label>Nombre</ion-label>
-                  <ion-input name="nombre" type="text" required></ion-input>
+                  <ion-input name="nombre" type="text" [(ngModel)]="registerUser.nombre" required></ion-input>
                 </ion-item>
 
                 <ion-item>
                   <ion-label>RUT</ion-label>
-                  <ion-input name="nombre" type="text" required></ion-input>
+                  <ion-input name="rut" type="text" [(ngModel)]="registerUser.rut" required></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label>Correo</ion-label>
-                  <ion-input name="email" type="email" required></ion-input>
+                  <ion-label>N° SAP</ion-label>
+                  <ion-input name="sap" type="text" [(ngModel)]="registerUser.sap" required></ion-input>
+                </ion-item>
+
+                <ion-item>
+                  <ion-label>Email</ion-label>
+                  <ion-input name="email" type="email" [(ngModel)]="registerUser.email" required></ion-input>
                 </ion-item>
 
                 <ion-item>
                   <ion-label>Contraseña</ion-label>
-                  <ion-input
-                    name="password"
-                    type="password"
-                    required
-                  ></ion-input>
+                  <ion-input name="password" type="password" [(ngModel)]="registerUser.password" required></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -128,27 +111,13 @@
   <ion-toolbar>
     <ion-row>
       <ion-col>
-        <ion-button
-          shape="round"
-          expand="full"
-          size="small"
-          fill="outline"
-          color="dark"
-          (click)="mostrarLogin()"
-        >
+        <ion-button shape="round" expand="full" size="small" fill="outline" color="dark" (click)="mostrarLogin()">
           Ingresar
         </ion-button>
       </ion-col>
 
       <ion-col>
-        <ion-button
-          shape="round"
-          expand="full"
-          size="small"
-          fill="outline"
-          color="dark"
-          (click)="mostrarRegistro()"
-        >
+        <ion-button shape="round" expand="full" size="small" fill="outline" color="dark" (click)="mostrarRegistro()">
           Registrarme
         </ion-button>
       </ion-col>

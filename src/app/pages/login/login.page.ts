@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { IonSlides, NavController } from "@ionic/angular";
 import { UsuarioService } from "../../services/usuario.service";
+import { UiServiceService } from "../../services/ui-service.service";
+import { Usuario } from "src/app/interfaces/interfaces";
 
 @Component({
   selector: "app-login",
@@ -47,13 +49,22 @@ export class LoginPage implements OnInit {
   ];
 
   loginUser = {
-    email: "felipe@gmail.com",
-    password: "1234567"
+    email: "test@test.com",
+    password: "123456"
+  };
+
+  registerUser: Usuario = {
+    email: "test@test.com",
+    password: "123456",
+    nombre: "test",
+    sap: "12345",
+    rut: "174695563"
   };
 
   constructor(
     private usuarioService: UsuarioService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private uiService: UiServiceService
   ) {}
 
   ngOnInit() {
@@ -74,10 +85,24 @@ export class LoginPage implements OnInit {
       this.navCtrl.navigateRoot("/convenio", { animated: true });
     } else {
       // Mostrar alerta de sap o contraseña invalido
+      this.uiService.alertaInformativa("Usuario y/o contraseña invalido.");
     }
   }
-  registro(fRegistro: NgForm) {
-    console.log(fRegistro.valid);
+  async registro(fRegistro: NgForm) {
+    if (fRegistro.invalid) {
+      return;
+    }
+    const valido = await this.usuarioService.registro(this.registerUser);
+
+    if (valido) {
+      // Navegar al convenio
+      this.navCtrl.navigateRoot("/convenio", { animated: true });
+    } else {
+      // Mostrar alerta de sap o contraseña invalido
+      this.uiService.alertaInformativa(
+        "El email ya existe en nuestros registros."
+      );
+    }
   }
 
   seleccionarAvatar(avatar) {

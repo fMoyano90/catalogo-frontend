@@ -9,6 +9,11 @@ import { Producto } from "../../interfaces/interfaces";
 export class ProductoComponent implements OnInit {
   @Input() producto: Producto = {};
 
+  slideSoloOpts = {
+    allowSlideNext: false,
+    allowSlidePrev: false
+  };
+
   public img1 = "/assets/guante.jpg";
 
   constructor() {}

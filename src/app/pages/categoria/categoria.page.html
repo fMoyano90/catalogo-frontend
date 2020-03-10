@@ -1,8 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Hombre
-    </ion-title>
+    <ion-title>{{categoria}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -17,4 +15,7 @@
   <ion-infinite-scroll [disabled]="!habilitado" threshold="150px" (ionInfinite)="siguientes($event)">
     <ion-infinite-scroll-content> </ion-infinite-scroll-content>
   </ion-infinite-scroll>
+</ion-content>
+<ion-content>
+
 </ion-content>

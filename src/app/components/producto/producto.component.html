@@ -10,19 +10,21 @@
       <h4 text-wrap>{{ producto.descripcion }}</h4>
     </ion-label>
   </ion-item>
-  <ion-slides pager="true">
-    <ion-slide class="image-slide" [style]="img1 | domSanitizer"> </ion-slide>
-    <ion-slide
-      class="image-slide"
-      style="background-image: url('/assets/guante.jpg')"
-    >
-    </ion-slide>
-    <ion-slide
-      class="image-slide"
-      style="background-image: url('/assets/guante.jpg')"
-    >
+  <!-- SI SON MAS DE UNA IMAGEN-->
+  <ion-slides pager="true" *ngIf="producto.img.length > 1">
+    <ion-slide *ngFor="let img of producto.img" class="image-slide" [style]="(img | imagen) | domSanitizer">
     </ion-slide>
   </ion-slides>
+  <!-- SI ES UNA IMAGEN -->
+  <ion-slides pager="true" *ngIf="producto.img.length === 1" [options]="slideSoloOpts">
+    <ion-slide class="image-slide" [style]="(producto.img[0] | imagen) | domSanitizer"></ion-slide>
+  </ion-slides>
+  <!-- 
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let img of producto.img" class="image-slide" [style]="(img | imagen) | domSanitizer"></ion-slide>
+  </ion-slides> -->
+
+
   <ion-item>
     <ion-label slot="start">
       <h4>{{ producto.medida }}</h4>

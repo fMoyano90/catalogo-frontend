@@ -4,7 +4,16 @@
 
 export const environment = {
   production: false,
-  url: "http://localhost:3001"
+  // Casa IP
+  //url: "http://192.168.0.14:3001"
+  // Oficina IP
+  // url: "http://169.254.24
+  //url: "http://190.160.0.14:3001"
+  //url: "http://192.168.0.32:3001"
+  // Entorno Local
+  //url: "http://localhost:3001"
+
+  url: "https://catalogo-codelco.herokuapp.com"
 };
 
 /*

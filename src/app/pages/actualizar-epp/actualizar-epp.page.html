@@ -1,0 +1,105 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-title>
+      Editar EPP
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="actualizarProducto()" color="primary" [disabled]="producto.descripcion.length < 1">
+        Actualizar EPP
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label position="floating">N° Material</ion-label>
+      <ion-input type="text" [(ngModel)]="producto.material"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="producto.descripcion"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="producto.categoria">
+        <ion-select-option value="Anteojos">Anteojos</ion-select-option>
+        <ion-select-option value="Arnes">Arnes</ion-select-option>
+        <ion-select-option value="Bandana">Bandana</ion-select-option>
+        <ion-select-option value="Barbiquejos">Barbiquejos</ion-select-option>
+        <ion-select-option value="Blusas">Blusas</ion-select-option>
+        <ion-select-option value="Botas">Botas</ion-select-option>
+        <ion-select-option value="Botines">Botines</ion-select-option>
+        <ion-select-option value="Buzos">Buzos</ion-select-option>
+        <ion-select-option value="Calcetines">Calcetines</ion-select-option>
+        <ion-select-option value="Camisas">Camisas</ion-select-option>
+        <ion-select-option value="Camisetas">Camisetas</ion-select-option>
+        <ion-select-option value="Cascos">Cascos</ion-select-option>
+        <ion-select-option value="Chalecos">Chalecos</ion-select-option>
+        <ion-select-option value="Conjuntos">Conjuntos</ion-select-option>
+        <ion-select-option value="Contra Vientos">Contra Vientos</ion-select-option>
+        <ion-select-option value="Cotonas">Cotonas</ion-select-option>
+        <ion-select-option value="Gafas">Gafas</ion-select-option>
+        <ion-select-option value="Gorros">Gorros</ion-select-option>
+        <ion-select-option value="Guantes">Guantes</ion-select-option>
+        <ion-select-option value="Jardineras">Jardineras</ion-select-option>
+        <ion-select-option value="Lamparas">Lamparas</ion-select-option>
+        <ion-select-option value="Lentes">Lentes</ion-select-option>
+        <ion-select-option value="Pantalones">Pantalones</ion-select-option>
+        <ion-select-option value="Parkas">Parkas</ion-select-option>
+        <ion-select-option value="Polar">Polar</ion-select-option>
+        <ion-select-option value="Protectores">Protectores</ion-select-option>
+        <ion-select-option value="Respiradores">Respiradores</ion-select-option>
+        <ion-select-option value="Soquetes">Soquetes</ion-select-option>
+        <ion-select-option value="Suspensiones">Suspensiones</ion-select-option>
+        <ion-select-option value="Tenidas">Tenidas</ion-select-option>
+        <ion-select-option value="Trajes">Trajes</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Género</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="producto.genero">
+        <ion-select-option value="dama">Mujer</ion-select-option>
+        <ion-select-option value="varon">Hombre</ion-select-option>
+        <ion-select-option value="unisex">Unisex</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Medida</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="producto.medida">
+        <ion-select-option value="UN">UN</ion-select-option>
+        <ion-select-option value="PAA">PAA</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+
+  </ion-list>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" shape="round" (click)="camara()">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Cámara
+      </ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button expand="full" shape="round" (click)="libreria()">
+        <ion-icon slot="start" name="images"></ion-icon>
+        Galerí­a
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3" *ngFor="let image of tempImages">
+      <ion-card>
+        <img [src]="image">
+      </ion-card>
+    </ion-col>
+  </ion-row>
+
+
+</ion-content>
