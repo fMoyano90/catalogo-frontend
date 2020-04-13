@@ -1,5 +1,5 @@
 <ion-header no-border>
-  <ion-toolbar>
+  <ion-toolbar color="naranjo">
     <ion-buttons slot="start">
       <ion-icon slot="icon-only" name="menu"></ion-icon>
     </ion-buttons>
@@ -9,8 +9,8 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content color="light">
-  <ion-searchbar placeholder="Busca un Epp"></ion-searchbar>
+<ion-content color="cuatro">
+  <ion-searchbar #input (keyup.enter)="realizarBusqueda( input.value )" placeholder="Busca un Epp"></ion-searchbar>
 
   <!--Refresher-->
   <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">

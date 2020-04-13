@@ -1,10 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{categoria}}</ion-title>
+<ion-header no-border>
+  <ion-toolbar color="naranjo">
+    <ion-buttons slot="start">
+      <ion-icon slot="icon-only" name="menu"></ion-icon>
+    </ion-buttons>
+    <ion-title>
+      {{categoria}}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="cuatro">
   <!--Refresher-->
   <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
     <ion-refresher-content></ion-refresher-content>
@@ -15,7 +24,4 @@
   <ion-infinite-scroll [disabled]="!habilitado" threshold="150px" (ionInfinite)="siguientes($event)">
     <ion-infinite-scroll-content> </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-</ion-content>
-<ion-content>
-
 </ion-content>

@@ -1,12 +1,30 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content>
-  <ion-slides class="mainSlide" #slider>
+  <ion-slides class=" mainSlide" #slider>
     <ion-slide>
       <form (ngSubmit)="login(fLogin)" #fLogin="ngForm">
         <ion-grid fixed>
           <ion-row>
             <ion-col>
+              <img src="assets/logo-codelco.png">
+
+
               <h2>Convenio Trabajadores</h2>
               <p>Ingresa con tus credenciales.</p>
+
+              <ion-item color="danger">
+                <ion-label class="info">
+                  *El RUT debe incluir puntos y guion<br><b>00.000.000-0</b>
+                </ion-label>
+              </ion-item>
+
             </ion-col>
           </ion-row>
 
@@ -14,13 +32,13 @@
             <ion-col>
               <ion-list>
                 <ion-item>
-                  <ion-label>Email</ion-label>
-                  <ion-input name="email" type="email" [(ngModel)]="loginUser.email" required></ion-input>
+                  <ion-label>RUT</ion-label>
+                  <ion-input name="rut" type="text" [(ngModel)]="loginUser.rut" required></ion-input>
                 </ion-item>
 
                 <ion-item>
-                  <ion-label>Contraseña</ion-label>
-                  <ion-input name="password" type="password" [(ngModel)]="loginUser.password" required></ion-input>
+                  <ion-label>N° SAP</ion-label>
+                  <ion-input name="sap" type="password" [(ngModel)]="loginUser.sap" required></ion-input>
                 </ion-item>
               </ion-list>
             </ion-col>
@@ -28,7 +46,7 @@
 
           <ion-row>
             <ion-col>
-              <ion-button type="submit" color="primary" shape="round">
+              <ion-button type="submit" color="uno" shape="round">
                 INGRESAR
               </ion-button>
             </ion-col>
@@ -36,8 +54,12 @@
         </ion-grid>
       </form>
     </ion-slide>
+  </ion-slides>
+</ion-content>
 
-    <ion-slide>
+
+
+<!-- <ion-slide>
       <ion-grid fixed>
         <ion-row>
           <ion-col>
@@ -105,22 +127,23 @@
       </ion-grid>
     </ion-slide>
   </ion-slides>
-</ion-content>
+</ion-content> -->
 
-<ion-footer no-border>
-  <ion-toolbar>
-    <ion-row>
-      <ion-col>
-        <ion-button shape="round" expand="full" size="small" fill="outline" color="dark" (click)="mostrarLogin()">
-          Ingresar
-        </ion-button>
-      </ion-col>
+<!-- <ion-footer no-border>
+      <ion-toolbar>
+        <ion-row>
+          <ion-col>
+            <ion-button shape="round" expand="full" size="small" fill="outline" color="dark" (click)="mostrarLogin()">
+              Ingresar
+            </ion-button>
+          </ion-col> -->
 
-      <ion-col>
-        <ion-button shape="round" expand="full" size="small" fill="outline" color="dark" (click)="mostrarRegistro()">
-          Registrarme
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer>
+<!-- <ion-col>
+            <ion-button shape="round" expand="full" size="small" fill="outline" color="dark"
+              (click)="mostrarRegistro()">
+              Registrarme
+            </ion-button>
+          </ion-col> -->
+<!-- </ion-row>
+    </ion-toolbar>
+    </ion-footer> -->

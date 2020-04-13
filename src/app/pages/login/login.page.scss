@@ -1,19 +1,22 @@
 .mainSlide,
 .mainSlide ion-slide {
   width: 100%;
-  height: 100%;
+  height: 90%;
 }
 
 img {
   width: 120px;
 }
-
-.pick-avatar {
-  width: 80px;
-  opacity: 0.5;
+.info {
+  text-align: center;
 }
 
-.pick-avatar-seleccionado {
-  transition: opacity 0.5s linear;
-  opacity: 1 !important;
-}
+// .pick-avatar {
+//   width: 80px;
+//   opacity: 0.5;
+// }
+
+// .pick-avatar-seleccionado {
+//   transition: opacity 0.5s linear;
+//   opacity: 1 !important;
+// }

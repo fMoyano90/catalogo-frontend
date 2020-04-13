@@ -85,6 +85,7 @@ export class CrearEppPage implements OnInit {
       },
       err => {
         // error
+        console.log(err);
       }
     );
   }

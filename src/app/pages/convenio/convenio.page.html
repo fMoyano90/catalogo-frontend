@@ -1,9 +1,58 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
-    <ion-title>convenio</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="dos" (click)="logout()">
+        Salir
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+    </ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col id="ingresoSolicitud">
+        <h1>Convenio Trabajadores</h1>
+        <p>Solicita tu equipo de protección personal</p>
+        <ion-button [disabled]="invierno" routerLink="/solicitud-invierno" color="dos" expand="block">SOLICITUD PERIODO
+          INVIERNO
+        </ion-button>
+        <p>(Abierto entre Enero y Marzo)</p>
+        <ion-button [disabled]="verano" routerLink="/solicitud-verano" color="naranjo" expand="block">SOLICITUD PERIODO
+          VERANO</ion-button>
+        <p>(Abierto entre Julio y Septiembre)</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-footer>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <p>
+            <small>*LA SOLICITUD SOLO SE PUEDE REALIZAR UNA VEZ POR AÑO, FAVOR VERIFICA LA INFORMACIÓN
+              ANTES DE ENVIAR LA SOLICITUD.</small>
+          </p>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="userRole == 'ADMIN_ROLE'" class="gestion-adm">
+        <ion-col>
+          <hr>
+          <h3 class="t-gestion">Gestión Administrativa</h3>
+          <ion-button expand="block" color="uno" routerLink="/crear-usuario">
+            <ion-icon slot="start" name="person-add"></ion-icon> Crear Usuario
+          </ion-button>
+          <ion-button expand="block" color="dos" routerLink="/usuarios">
+            <ion-icon slot="start" name="people"></ion-icon> Gestión Usuarios
+          </ion-button>
+          <ion-button expand="block" color="tres" routerLink="/historial-solicitudes">
+            <ion-icon slot="start" name="time"></ion-icon> Historial Solicitudes
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-footer>
 </ion-content>

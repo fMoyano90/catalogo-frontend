@@ -1,48 +1,53 @@
 <ion-app>
   <ion-menu side="start" menuId="first" contentId="principal">
     <ion-header>
-      <ion-toolbar color="dark">
+      <ion-toolbar color="dos">
         <ion-title>Categorias</ion-title>
       </ion-toolbar>
     </ion-header>
     <ion-content>
       <ion-list>
-        <ion-item>Anteojos</ion-item>
-        <ion-item>Arnes</ion-item>
-        <ion-item>Bandana</ion-item>
-        <ion-item>Barbiquejos</ion-item>
-        <ion-item>Blusas</ion-item>
-        <ion-item>Botas</ion-item>
-        <ion-item>Botines</ion-item>
-        <ion-item>Buzos</ion-item>
-        <ion-item>Calcetines</ion-item>
-        <ion-item>Camisas</ion-item>
-        <ion-item>Camisetas</ion-item>
-        <ion-item>Cascos</ion-item>
-        <ion-item>Chalecos</ion-item>
-        <ion-item>Conjuntos</ion-item>
-        <ion-item>Contra Vientos</ion-item>
-        <ion-item>Cotonas</ion-item>
-        <ion-item>Gafas</ion-item>
-        <ion-item>Gorros</ion-item>
-        <ion-item>Guantes</ion-item>
-        <ion-item>Jardineras</ion-item>
-        <ion-item>Lamparas</ion-item>
-        <ion-item>Lentes</ion-item>
-        <ion-item>Pantalones</ion-item>
-        <ion-item>Parkas</ion-item>
-        <ion-item>Polar</ion-item>
-        <ion-item>Protectores</ion-item>
-        <ion-item>Respiradores</ion-item>
-        <ion-item>Soquetes</ion-item>
-        <ion-item>Suspensiones</ion-item>
-        <ion-item>Tenidas</ion-item>
-        <ion-item>Trajes</ion-item>
-        <hr>
-        <h3 class="t-gestion">Gestión Administrativa</h3>
-        <ion-item>Usuarios</ion-item>
-        <ion-item>Nuevo EPP</ion-item>
-        <ion-item>Historia Solicitudes</ion-item>
+        <ion-item><a routerLink="categoria/ANTEOJOS">Anteojos</a></ion-item>
+        <ion-item><a routerLink="categoria/ARNES">Arnes</a></ion-item>
+        <ion-item><a routerLink="categoria/BANDANA">Bandana</a></ion-item>
+        <ion-item><a routerLink="categoria/BARBIQUEJOS">Barbiquejos</a></ion-item>
+        <ion-item><a routerLink="categoria/BLUSAS">Blusas</a></ion-item>
+        <ion-item><a routerLink="categoria/BOTAS">Botas</a></ion-item>
+        <ion-item><a routerLink="categoria/BOTINES">Botines</a></ion-item>
+        <ion-item><a routerLink="categoria/BUZOS">Buzos</a></ion-item>
+        <ion-item><a routerLink="categoria/CALCETINES">Calcetines</a></ion-item>
+        <ion-item><a routerLink="categoria/CAMISAS">Camisas</a></ion-item>
+        <ion-item><a routerLink="categoria/CAMISETAS">Camisetas</a></ion-item>
+        <ion-item><a routerLink="categoria/CASCOS">Cascos</a></ion-item>
+        <ion-item><a routerLink="categoria/CHALECOS">Chalecos</a></ion-item>
+        <ion-item><a routerLink="categoria/CONJUNTOS">Conjuntos</a></ion-item>
+        <ion-item><a routerLink="categoria/CONTRA VIENTOS">Contra Vientos</a></ion-item>
+        <ion-item><a routerLink="categoria/COTONAS">Cotonas</a></ion-item>
+        <ion-item><a routerLink="categoria/GAFAS">Gafas</a></ion-item>
+        <ion-item><a routerLink="categoria/GORROS">Gorros</a></ion-item>
+        <ion-item><a routerLink="categoria/GUANTES">Guantes</a></ion-item>
+        <ion-item><a routerLink="categoria/JARDINERAS">Jardineras</a></ion-item>
+        <ion-item><a routerLink="categoria/LAMPARAS">Lamparas</a></ion-item>
+        <ion-item><a routerLink="categoria/LENTES">Lentes</a></ion-item>
+        <ion-item><a routerLink="categoria/PANTALONES">Pantalones</a></ion-item>
+        <ion-item><a routerLink="categoria/PARKAS">Parkas</a></ion-item>
+        <ion-item><a routerLink="categoria/POLAR">Polar</a></ion-item>
+        <ion-item><a routerLink="categoria/PROTECTORES">Protectores</a></ion-item>
+        <ion-item><a routerLink="categoria/RESPIRADORES">Respiradores</a></ion-item>
+        <ion-item><a routerLink="categoria/SOQUETES">Soquetes</a></ion-item>
+        <ion-item><a routerLink="categoria/SUSPENSIONES">Suspensiones</a></ion-item>
+        <ion-item><a routerLink="categoria/TENIDAS">Tenidas</a></ion-item>
+        <ion-item><a routerLink="categoria/TRAJES">Trajes</a></ion-item>
+        <div *ngIf="userRole == 'ADMIN_ROLE'">
+          <hr>
+          <h3 class="t-gestion">Gestión Administrativa</h3>
+          <ion-item><a routerLink="crear-usuario">Crear Usuario</a></ion-item>
+          <ion-item><a routerLink="usuarios">Gestión Usuario</a>s</ion-item>
+          <ion-item><a routerLink="historial-solicitudes"></a>Historial Solicitudes</ion-item>
+          <ion-item>
+            <ion-button color="dos" (click)="logout()">Salir</ion-button>
+          </ion-item>
+        </div>
       </ion-list>
     </ion-content>
   </ion-menu>

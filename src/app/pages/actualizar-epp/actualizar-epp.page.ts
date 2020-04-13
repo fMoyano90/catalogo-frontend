@@ -27,19 +27,18 @@ export class ActualizarEppPage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private route: Router,
     private camera: Camera
-  ) {}
-
-  ngOnInit() {
+  ) {
     this.obtenerEpp();
   }
 
+  ngOnInit() {}
+
   async actualizarProducto(id) {
-    console.log(this.producto);
     const actualizado = await this.productosService.actualizarProducto(
       this.producto,
       id
     );
-
+    console.log(this.producto, id);
     this.producto = {
       material: "",
       descripcion: "",
@@ -89,6 +88,7 @@ export class ActualizarEppPage implements OnInit {
       },
       err => {
         // error
+        console.log(err);
       }
     );
   }
@@ -98,7 +98,7 @@ export class ActualizarEppPage implements OnInit {
       let id = params.id;
       this.productosService.getProducto(id).subscribe(
         resp => {
-          this.producto = resp;
+          this.producto = resp["producto"];
         },
         error => console.log(error)
       );

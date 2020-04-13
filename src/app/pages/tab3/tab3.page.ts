@@ -26,7 +26,7 @@ export class Tab3Page implements OnInit {
 
   siguientes(pull: boolean = false, event?: any) {
     this.productosService
-      .getProductosPorGenero("varon", pull)
+      .getProductosPorGenero("dama", pull)
       .subscribe(resp => {
         console.log(resp);
         this.productos.push(...resp.productos);

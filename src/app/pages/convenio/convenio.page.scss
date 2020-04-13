@@ -1,0 +1,23 @@
+ion-content {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+#ingresoSolicitud {
+  ion-button {
+    margin-top: 50px;
+  }
+}
+
+ion-footer {
+  margin-top: 100px;
+  p {
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+.gestion-adm {
+  margin-bottom: 20px;
+}

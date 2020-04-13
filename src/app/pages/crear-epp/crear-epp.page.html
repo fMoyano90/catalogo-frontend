@@ -1,10 +1,13 @@
 <ion-header no-border>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
     <ion-title>
       Nuevo EPP
     </ion-title>
     <ion-buttons slot="end">
-      <ion-button (click)="crearProducto()" color="primary" [disabled]="producto.descripcion.length < 1">
+      <ion-button (click)="crearProducto()" color="uno" [disabled]="producto.descripcion.length < 1">
         Crear EPP
       </ion-button>
     </ion-buttons>
@@ -26,37 +29,37 @@
     <ion-item>
       <ion-label>Categoria</ion-label>
       <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="producto.categoria">
-        <ion-select-option value="Anteojos">Anteojos</ion-select-option>
-        <ion-select-option value="Arnes">Arnes</ion-select-option>
-        <ion-select-option value="Bandana">Bandana</ion-select-option>
-        <ion-select-option value="Barbiquejos">Barbiquejos</ion-select-option>
-        <ion-select-option value="Blusas">Blusas</ion-select-option>
-        <ion-select-option value="Botas">Botas</ion-select-option>
-        <ion-select-option value="Botines">Botines</ion-select-option>
-        <ion-select-option value="Buzos">Buzos</ion-select-option>
-        <ion-select-option value="Calcetines">Calcetines</ion-select-option>
-        <ion-select-option value="Camisas">Camisas</ion-select-option>
-        <ion-select-option value="Camisetas">Camisetas</ion-select-option>
-        <ion-select-option value="Cascos">Cascos</ion-select-option>
-        <ion-select-option value="Chalecos">Chalecos</ion-select-option>
-        <ion-select-option value="Conjuntos">Conjuntos</ion-select-option>
-        <ion-select-option value="Contra Vientos">Contra Vientos</ion-select-option>
-        <ion-select-option value="Cotonas">Cotonas</ion-select-option>
-        <ion-select-option value="Gafas">Gafas</ion-select-option>
-        <ion-select-option value="Gorros">Gorros</ion-select-option>
-        <ion-select-option value="Guantes">Guantes</ion-select-option>
-        <ion-select-option value="Jardineras">Jardineras</ion-select-option>
-        <ion-select-option value="Lamparas">Lamparas</ion-select-option>
-        <ion-select-option value="Lentes">Lentes</ion-select-option>
-        <ion-select-option value="Pantalones">Pantalones</ion-select-option>
-        <ion-select-option value="Parkas">Parkas</ion-select-option>
-        <ion-select-option value="Polar">Polar</ion-select-option>
-        <ion-select-option value="Protectores">Protectores</ion-select-option>
-        <ion-select-option value="Respiradores">Respiradores</ion-select-option>
-        <ion-select-option value="Soquetes">Soquetes</ion-select-option>
-        <ion-select-option value="Suspensiones">Suspensiones</ion-select-option>
-        <ion-select-option value="Tenidas">Tenidas</ion-select-option>
-        <ion-select-option value="Trajes">Trajes</ion-select-option>
+        <ion-select-option value="ANTEOJOS">Anteojos</ion-select-option>
+        <ion-select-option value="ARNES">Arnes</ion-select-option>
+        <ion-select-option value="BANDANA">Bandana</ion-select-option>
+        <ion-select-option value="BARBIQUEJOS">Barbiquejos</ion-select-option>
+        <ion-select-option value="BLUSAS">Blusas</ion-select-option>
+        <ion-select-option value="BOTAS">Botas</ion-select-option>
+        <ion-select-option value="BOTINES">Botines</ion-select-option>
+        <ion-select-option value="BUZOS">Buzos</ion-select-option>
+        <ion-select-option value="CALCETINES">Calcetines</ion-select-option>
+        <ion-select-option value="CAMISAS">Camisas</ion-select-option>
+        <ion-select-option value="CAMISETAS">Camisetas</ion-select-option>
+        <ion-select-option value="CASCOS">Cascos</ion-select-option>
+        <ion-select-option value="CHALECOS">Chalecos</ion-select-option>
+        <ion-select-option value="CONJUNTOS">Conjuntos</ion-select-option>
+        <ion-select-option value="CONTRA VIENTOS">Contra Vientos</ion-select-option>
+        <ion-select-option value="COTONAS">Cotonas</ion-select-option>
+        <ion-select-option value="GAFAS">Gafas</ion-select-option>
+        <ion-select-option value="GORROS">Gorros</ion-select-option>
+        <ion-select-option value="GUANTES">Guantes</ion-select-option>
+        <ion-select-option value="JARDINERAS">Jardineras</ion-select-option>
+        <ion-select-option value="LAMPARAS">Lamparas</ion-select-option>
+        <ion-select-option value="LENTES">Lentes</ion-select-option>
+        <ion-select-option value="PANTALONES">Pantalones</ion-select-option>
+        <ion-select-option value="PARKAS">Parkas</ion-select-option>
+        <ion-select-option value="POLAR">Polar</ion-select-option>
+        <ion-select-option value="PROTECTORES">Protectores</ion-select-option>
+        <ion-select-option value="RESPIRADORES">Respiradores</ion-select-option>
+        <ion-select-option value="SOQUETES">Soquetes</ion-select-option>
+        <ion-select-option value="SUSPENSIONES">Suspensiones</ion-select-option>
+        <ion-select-option value="TENIDAS">Tenidas</ion-select-option>
+        <ion-select-option value="TRAJES">Trajes</ion-select-option>
       </ion-select>
     </ion-item>
     <ion-item>
@@ -68,7 +71,7 @@
       </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label>Medida</ion-label>
+      <ion-label>Talla</ion-label>
       <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="producto.medida">
         <ion-select-option value="UN">UN</ion-select-option>
         <ion-select-option value="PAA">PAA</ion-select-option>
@@ -80,13 +83,13 @@
 
   <ion-row>
     <ion-col size="6">
-      <ion-button expand="full" shape="round" (click)="camara()">
+      <ion-button expand="full" shape="round" (click)="camara()" color="uno">
         <ion-icon slot="start" name="camera"></ion-icon>
         Cámara
       </ion-button>
     </ion-col>
     <ion-col size="6">
-      <ion-button expand="full" shape="round" (click)="libreria()">
+      <ion-button expand="full" shape="round" (click)="libreria()" color="dos">
         <ion-icon slot="start" name="images"></ion-icon>
         Galerí­a
       </ion-button>

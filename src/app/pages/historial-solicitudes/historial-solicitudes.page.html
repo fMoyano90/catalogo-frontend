@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="naranjo">
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>HISTORIAL SOLICITUDES</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <h3>1. Selecciona un año</h3>
+        <ion-item>
+          <ion-label>AÑO</ion-label>
+          <ion-select (ionChange)="atraparAnio(anio)" name="anio" type="number" [(ngModel)]="anio" required>
+            <ion-select-option value="2020">2020</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="anio && solicitudes">
+      <ion-col>
+        <ion-list>
+          <ion-item *ngFor="let solicitud of solicitudes">
+            <ion-label slot="start">{{solicitud.nombre}}</ion-label>
+            <ion-label>
+              <ion-button color="primary" *ngIf="solicitud.temporada == 'INVIERNO'">
+                <ion-icon name="rainy"></ion-icon>
+              </ion-button>
+              <ion-button color="naranjo" *ngIf="solicitud.temporada == 'VERANO'">
+                <ion-icon name="sunny"></ion-icon>
+              </ion-button>
+            </ion-label>
+            <ion-label slot="end">
+              <ion-button color="uno" [routerLink]="['/solicitud', solicitud._id]">
+                <ion-icon name="eye"></ion-icon>
+              </ion-button>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
+        <domain includeSubdomains="true">167.172.148.161:3001</domain>
+        <domain includeSubdomains="true">http://167.172.148.161:3001</domain>
+        <domain includeSubdomains="true">https://167.172.148.161:3001</domain>
     </domain-config>
 </network-security-config>

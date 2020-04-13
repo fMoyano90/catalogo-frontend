@@ -1,12 +1,21 @@
-<ion-header>
-    <ion-toolbar>
+<ion-header no-border>
+    <ion-toolbar color="naranjo">
+        <ion-buttons slot="start">
+            <ion-icon slot="icon-only" name="menu"></ion-icon>
+        </ion-buttons>
         <ion-title>
             Mujer
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="cuatro">
+    <!--Mensaje cuando no hay coincidencias-->
+    <ion-item *ngIf="productos.length == 0" color="dos" class="ion-margin-top">
+        <ion-label>
+            No existen coincidencias
+        </ion-label>
+    </ion-item>
     <!--Refresher-->
     <ion-refresher slot="fixed" (ionRefresh)="recargar($event)">
         <ion-refresher-content></ion-refresher-content>

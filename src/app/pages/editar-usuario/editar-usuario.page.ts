@@ -3,6 +3,7 @@ import { Usuario } from "../../interfaces/interfaces";
 import { UsuarioService } from "../../services/usuario.service";
 import { NgForm } from "@angular/forms";
 import { UiServiceService } from "../../services/ui-service.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-editar-usuario",
@@ -13,12 +14,18 @@ export class EditarUsuarioPage implements OnInit {
   usuario: any = {};
   constructor(
     private usuarioService: UsuarioService,
-    private uiService: UiServiceService
+    private uiService: UiServiceService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.usuario = this.usuarioService.getUsuario();
-    console.log(this.usuario);
+    this.route.params.subscribe(params => {
+
+      let id = params.id;
+      
+      this.usuario = this.usuarioService.getUsuario(id);
+      console.log(this.usuario);
+    });
   }
 
   async actualizar(fActualizar: NgForm) {

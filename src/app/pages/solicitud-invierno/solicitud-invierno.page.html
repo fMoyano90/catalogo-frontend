@@ -1,0 +1,602 @@
+<ion-header no-border>
+  <ion-toolbar color="naranjo">
+    <ion-buttons slot="start">
+      <ion-icon slot="icon-only" name="menu"></ion-icon>
+    </ion-buttons>
+    <ion-title>SOLICITUD INVIERNO</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col>
+        <p>Solicita tu ropa de invierno de forma sencilla, enviaremos un comprobante con
+          los datos de la solicitud al correo que nos indiques.</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <h3>1. Datos del usuario</h3>
+        <p>Nombre: {{usuario.nombre}}</p>
+        <p>RUT: {{usuario.rut}}</p>
+        <p>SAP: {{usuario.sap}}</p>
+        <p>Función: {{usuario.funcion}}</p>
+        <p>Ubicación: {{usuario.div_pers}}</p>
+      </ion-col>
+    </ion-row>
+
+    <!--FORMULARIO 1: MINA RAJO-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'MINA RAJO'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD INVIERNO</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option *ngFor="let talla of tallasZapatos" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. BUZO PILOTO</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option *ngFor="let talla of tallasBuzos" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CAMISA SLACK</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>4. CORTA VIENTO</ion-label>
+              <ion-select name="tall4" type="number" [(ngModel)]="solicitud.tall4" required>
+                <ion-select-option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>5. PANTALON SLACK</ion-label>
+              <ion-select name="tall5" type="number" [(ngModel)]="solicitud.tall5" required>
+                <ion-select-option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>6. POLAR</ion-label>
+              <ion-select name="tall6" type="number" [(ngModel)]="solicitud.tall6" required>
+                <ion-select-option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>7. 1RA CAPA CAMISETA</ion-label>
+              <ion-select name="tall7" type="number" [(ngModel)]="solicitud.tall7" required>
+                <ion-select-option *ngFor="let talla of tallas2" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>8. 1RA CAPA PANTALON</ion-label>
+              <ion-select name="tall8" type="number" [(ngModel)]="solicitud.tall8" required>
+                <ion-select-option *ngFor="let talla of tallas2" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <!--FORMULARIO 2: Mina Subterr.-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'Mina Subterr.'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD CON CHIPORRO</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. ZAPATO DE SEGURIDAD DIELECTRICO</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CAMISA SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>4. PANTALON SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall4" type="number" [(ngModel)]="solicitud.tall4" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>5. TENIDA TERMICA</ion-label>
+              <ion-select name="tall5" type="number" [(ngModel)]="solicitud.tall5" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>6. GORRO AFRANELADO</ion-label>
+              <ion-select name="tall6" type="number" [(ngModel)]="solicitud.tall6" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>7. BUZO PILOTO REFORZADO</ion-label>
+              <ion-select name="tall7" type="number" [(ngModel)]="solicitud.tall7" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>8. BUZO PILOTO</ion-label>
+              <ion-select name="tall8" type="number" [(ngModel)]="solicitud.tall8" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>9. PARKA DE TRAYECTO</ion-label>
+              <ion-select name="tall9" type="number" [(ngModel)]="solicitud.tall9" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <!--FORMULARIO 3: Concentrador-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'Concentrador'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD VERLAN</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. BUZO PILOTO</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CAMISA SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>4. CORTA VIENTO</ion-label>
+              <ion-select name="tall4" type="number" [(ngModel)]="solicitud.tall4" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>5. GORRO AFRANELADO (ESPECIAL RAJO)</ion-label>
+              <ion-select name="tall5" type="number" [(ngModel)]="solicitud.tall5" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>6. PARKA DE TRAYECTO</ion-label>
+              <ion-select name="tall6" type="number" [(ngModel)]="solicitud.tall6" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>7. PANTALON SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall7" type="number" [(ngModel)]="solicitud.tall7" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <!--FORMULARIO 4: Plan.Fil. A.Ind-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'Plan.Fil. A.Ind'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD VERLAN</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. BUZO PILOTO</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CAMISA SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>4. CORTA VIENTO</ion-label>
+              <ion-select name="tall4" type="number" [(ngModel)]="solicitud.tall4" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>5. GORRO AFRANELADO (ESPECIAL RAJO)</ion-label>
+              <ion-select name="tall5" type="number" [(ngModel)]="solicitud.tall5" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>6. PARKA DE TRAYECTO</ion-label>
+              <ion-select name="tall6" type="number" [(ngModel)]="solicitud.tall6" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>7. PANTALON SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall7" type="number" [(ngModel)]="solicitud.tall7" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <!--FORMULARIO 5: Saladillo-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'Saladillo'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD VERLAN</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. BUZO PILOTO</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CAMISA SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>4. CORTA VIENTO</ion-label>
+              <ion-select name="tall4" type="number" [(ngModel)]="solicitud.tall4" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>5. GORRO AFRANELADO (ESPECIAL RAJO)</ion-label>
+              <ion-select name="tall5" type="number" [(ngModel)]="solicitud.tall5" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>6. PARKA DE TRAYECTO</ion-label>
+              <ion-select name="tall6" type="number" [(ngModel)]="solicitud.tall6" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>7. PANTALON SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall7" type="number" [(ngModel)]="solicitud.tall7" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <!--FORMULARIO 6: Los Andes-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'Los Andes'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option *ngFor="let talla of tallasZapatos" value="{{talla}}">{{talla}}</ion-select-option>
+
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. POLAR</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CORTA VIENTO</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option *ngFor="let talla of tallas" value="{{talla}}">{{talla}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <!--FORMULARIO 7: Huechun A.Ind.-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'Huechun A.Ind.'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD VERLAN</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. BUZO PILOTO</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CAMISA SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>4. CORTA VIENTO</ion-label>
+              <ion-select name="tall4" type="number" [(ngModel)]="solicitud.tall4" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>5. GORRO AFRANELADO (ESPECIAL RAJO)</ion-label>
+              <ion-select name="tall5" type="number" [(ngModel)]="solicitud.tall5" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>6. PARKA DE TRAYECTO</ion-label>
+              <ion-select name="tall6" type="number" [(ngModel)]="solicitud.tall6" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>7. PANTALON SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall7" type="number" [(ngModel)]="solicitud.tall7" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <!--FORMULARIO 8: Sur-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'Sur'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD VERLAN</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. BUZO PILOTO</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CAMISA SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>4. CORTA VIENTO</ion-label>
+              <ion-select name="tall4" type="number" [(ngModel)]="solicitud.tall4" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>5. GORRO AFRANELADO (ESPECIAL RAJO)</ion-label>
+              <ion-select name="tall5" type="number" [(ngModel)]="solicitud.tall5" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>6. PARKA DE TRAYECTO</ion-label>
+              <ion-select name="tall6" type="number" [(ngModel)]="solicitud.tall6" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>7. PANTALON SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall7" type="number" [(ngModel)]="solicitud.tall7" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+
+    <!--FORMULARIO 9: Planta Filtro-->
+    <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm" *ngIf="usuario.div_pers == 'Planta Filtro'">
+      <ion-row>
+        <ion-col>
+          <h3>2. Selecciona tus tallas</h3>
+          <ion-list>
+            <ion-item>
+              <ion-label>1. ZAPATO DE SEGURIDAD VERLAN</ion-label>
+              <ion-select name="tall1" type="number" [(ngModel)]="solicitud.tall1" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>2. BUZO PILOTO</ion-label>
+              <ion-select name="tall2" type="number" [(ngModel)]="solicitud.tall2" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>3. CAMISA SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall3" type="number" [(ngModel)]="solicitud.tall3" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>4. CORTA VIENTO</ion-label>
+              <ion-select name="tall4" type="number" [(ngModel)]="solicitud.tall4" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>5. GORRO AFRANELADO (ESPECIAL RAJO)</ion-label>
+              <ion-select name="tall5" type="number" [(ngModel)]="solicitud.tall5" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>6. PARKA DE TRAYECTO</ion-label>
+              <ion-select name="tall6" type="number" [(ngModel)]="solicitud.tall6" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+            <ion-item>
+              <ion-label>7. PANTALON SLACK INVIERNO AZUL</ion-label>
+              <ion-select name="tall7" type="number" [(ngModel)]="solicitud.tall7" required>
+                <ion-select-option value="42">42</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+          <ion-row>
+            <ion-col>
+              <ion-button type="submit" color="uno" shape="round">
+                Enviar solicitud a bodega
+              </ion-button>
+              <p>
+                <b>*Importante:</b> Favor verifica las tallas antes de enviar,
+                solo se puede efectuar una solicitud por temporada al año.
+              </p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>

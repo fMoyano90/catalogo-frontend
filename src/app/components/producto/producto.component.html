@@ -1,13 +1,23 @@
 <div class="producto">
   <ion-item>
-    <ion-label>
+    <ion-label class="d-inline">
       <h3>
         <small>
-          <b> {{ producto.categoria }} (Cod: {{ producto.material }}) </b>
+          <b>
+            <ion-button [routerLink]="['/actualizar-epp', producto._id]" class="btn-actualizar" color="uno"
+              *ngIf="userRole == 'ADMIN_ROLE'">
+              (Cod: {{ producto.material }})
+            </ion-button>
+            <ion-button class="btn-actualizar" color="uno" *ngIf="userRole != 'ADMIN_ROLE'">
+              (Cod: {{ producto.material }})
+            </ion-button>
+          </b>
+          {{producto.categoria}}
         </small>
       </h3>
-
-      <h4 text-wrap>{{ producto.descripcion }}</h4>
+      <h4 class="ion-text-wrap">
+        {{ producto.descripcion }}
+      </h4>
     </ion-label>
   </ion-item>
   <!-- SI SON MAS DE UNA IMAGEN-->
@@ -29,7 +39,11 @@
     <ion-label slot="start">
       <h4>{{ producto.medida }}</h4>
     </ion-label>
-
+    <ion-label *ngIf="userRole == 'ADMIN_ROLE' && userRole != null">
+      <ion-button color="danger" (click)="eliminarEpp(producto._id)">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-label>
     <ion-label slot="end">
       <h4>{{ producto.genero }}</h4>
     </ion-label>

@@ -1,21 +1,29 @@
-import { Component, OnInit } from "@angular/core";
-import { ProductosService } from "../../services/productos.service";
-import { Producto } from "../../interfaces/interfaces";
+import { Component, OnInit } from '@angular/core';
+import { ProductosService } from '../../services/productos.service';
+import { Producto } from '../../interfaces/interfaces';
+import { Router } from '@angular/router';
+import { TouchSequence } from 'selenium-webdriver';
+import { UsuarioService } from '../../services/usuario.service';
 
 @Component({
-  selector: "app-tab1",
-  templateUrl: "tab1.page.html",
-  styleUrls: ["tab1.page.scss"]
+  selector: 'app-tab1',
+  templateUrl: 'tab1.page.html',
+  styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
   productos: Producto[] = [];
-  habilitado: boolean = true;
+  habilitado = true;
+  busqueda: string;
 
-  constructor(private productosService: ProductosService) {}
+  constructor(
+    private productosService: ProductosService,
+    private usuarioService: UsuarioService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.siguientes();
-    this.productosService.nuevoProducto.subscribe(epp => {
+    this.productosService.nuevoProducto.subscribe((epp) => {
       this.productos.unshift(epp);
     });
   }
@@ -25,8 +33,10 @@ export class Tab1Page implements OnInit {
   }
 
   siguientes(event?: any, pull: boolean = false) {
-    this.productosService.getProductos(pull).subscribe(resp => {
-      console.log(resp);
+    if (pull) {
+      this.productos = [];
+    }
+    this.productosService.getProductos(pull).subscribe((resp) => {
       this.productos.push(...resp.productos);
       if (event) {
         event.target.complete();
@@ -36,5 +46,9 @@ export class Tab1Page implements OnInit {
         }
       }
     });
+  }
+
+  realizarBusqueda(busqueda) {
+    this.router.navigate(['/busqueda', busqueda]);
   }
 }
