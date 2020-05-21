@@ -39,101 +39,35 @@
             <ion-item>
               <ion-label>Genero</ion-label>
               <ion-select [(ngModel)]="registerUser.genero" name="genero" okText="Confirmar" cancelText="Cancelar">
-                <ion-select-option value="M">Masculino</ion-select-option>
-                <ion-select-option value="F">Femenino</ion-select-option>
+                <ion-select-option value="hombre">Masculino</ion-select-option>
+                <ion-select-option value="mujer">Femenino</ion-select-option>
               </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Estado Civil</ion-label>
-              <ion-select [(ngModel)]="registerUser.estado_civil" name="estado_civil" okText="Confirmar"
-                cancelText="Cancelar">
-                <ion-select-option value="Solt.">Soltero</ion-select-option>
-                <ion-select-option value="Casado">Casado</ion-select-option>
-                <ion-select-option value="Divorc.">Divorciado</ion-select-option>
-                <ion-select-option value="Viudo">Viudo</ion-select-option>
-                <ion-select-option value="UCivil">Únion Civil</ion-select-option>
-              </ion-select>
-            </ion-item>
-            <ion-item>
-              <ion-label>Rol</ion-label>
-              <ion-input name="rol" type="text" [(ngModel)]="registerUser.rol" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Contrato</ion-label>
-              <ion-input name="contrato" type="text" [(ngModel)]="registerUser.contrato" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>ACO</ion-label>
-              <ion-input name="aco" type="text" [(ngModel)]="registerUser.aco" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Nacimiento</ion-label>
-              <ion-input name="nacimiento" type="date" [(ngModel)]="registerUser.nacimiento" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Ingreso</ion-label>
-              <ion-input name="ingreso" type="text" [(ngModel)]="registerUser.ingreso" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>División</ion-label>
-              <ion-input name="division" type="text" [(ngModel)]="registerUser.division " required></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Centro de costo</ion-label>
               <ion-input name="centro_costo" type="text" [(ngModel)]="registerUser.centro_costo" required></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Posición</ion-label>
-              <ion-input name="posicion" type="text" [(ngModel)]="registerUser.posicion" required></ion-input>
-            </ion-item>
-            <ion-item>
               <ion-label>Ubicación</ion-label>
-              <ion-input name="div_pers" type="text" [(ngModel)]="registerUser.div_pers" required></ion-input>
+              <ion-select [(ngModel)]="registerUser.ubicacion" name="ubicacion" okText="Confirmar"
+                cancelText="Cancelar">
+                <ion-select-option value="salacom">Sala Com.</ion-select-option>
+                <ion-select-option value="los_andes">Los Andes</ion-select-option>
+                <ion-select-option value="huechun">Huechun</ion-select-option>
+                <ion-select-option value="saladillo">Saladillo</ion-select-option>
+                <ion-select-option value="planta_filtro">Planta de Filtro</ion-select-option>
+                <ion-select-option value="mina_sub">Mina Subterranea</ion-select-option>
+                <ion-select-option value="concentrador">Concentrador</ion-select-option>
+                <ion-select-option value="sur">Sur</ion-select-option>
+              </ion-select>
             </ion-item>
             <ion-item>
-              <ion-label>Función</ion-label>
-              <ion-input name="funcion" type="text" [(ngModel)]="registerUser.funcion" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Organización</ion-label>
-              <ion-input name="organizacion" type="text" [(ngModel)]="registerUser.organizacion" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Superintendencia</ion-label>
-              <ion-input name="superintendencia" type="text" [(ngModel)]="registerUser.superintendencia" required>
-              </ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Gerencia</ion-label>
-              <ion-input name="genero" type="text" [(ngModel)]="registerUser.genero" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Regla P.Pl</ion-label>
-              <ion-input name="regla_ppl" type="text" [(ngModel)]="registerUser.regla_ppl" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Inst. Previsional</ion-label>
-              <ion-input name="previsiones" type="text" [(ngModel)]="registerUser.previsiones" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Inst. Salud</ion-label>
-              <ion-input name="salud" type="text" [(ngModel)]="registerUser.salud" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Calle</ion-label>
-              <ion-input name="calle" type="text" [(ngModel)]="registerUser.calle" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Pobl/Villa/Condominio</ion-label>
-              <ion-input name="villa" type="text" [(ngModel)]="registerUser.villa" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Sindicato</ion-label>
-              <ion-input name="sindicato" type="text" [(ngModel)]="registerUser.sindicato" required></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Tipo de socio</ion-label>
-              <ion-input name="tipo_socio" type="text" [(ngModel)]="registerUser.tipo_socio" required></ion-input>
+              <ion-label>Cargo</ion-label>
+              <ion-select [(ngModel)]="registerUser.cargo" name="cargo" okText="Confirmar" cancelText="Cancelar">
+                <ion-select-option value="electrico">Eléctrico</ion-select-option>
+                <ion-select-option value="mecanico">Mecánico</ion-select-option>
+                <ion-select-option value="general">Otro</ion-select-option>
+              </ion-select>
             </ion-item>
             <ion-item>
               <ion-label>Tipo de usuario</ion-label>
@@ -146,7 +80,6 @@
           </ion-list>
         </ion-col>
       </ion-row>
-
       <ion-row>
         <ion-col>
           <ion-button type="submit" color="uno" shape="round">
@@ -157,27 +90,3 @@
     </form>
   </ion-grid>
 </ion-content>
-
-<!-- <ion-footer no-border>
-        <ion-toolbar>
-          <ion-row>
-            <ion-col>
-              <ion-button shape="round" expand="full" size="small" fill="outline" color="dark" (click)="mostrarLogin()">
-                Ingresar
-              </ion-button>
-            </ion-col> -->
-
-<!-- <ion-col>
-              <ion-button shape="round" expand="full" size="small" fill="outline" color="dark"
-                (click)="mostrarRegistro()">
-                Registrarme
-              </ion-button>
-            </ion-col> -->
-<!-- </ion-row>
-      </ion-toolbar>
-      </ion-footer>
-  <!-- 
-
-sindicato
-tipo_socio
-tipo_usuario -->

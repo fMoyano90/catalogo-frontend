@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 @Component({
   selector: "app-actualizar-usuario",
   templateUrl: "./actualizar-usuario.page.html",
-  styleUrls: ["./actualizar-usuario.page.scss"]
+  styleUrls: ["./actualizar-usuario.page.scss"],
 })
 export class ActualizarUsuarioPage implements OnInit {
   registerUser: Usuario = {
@@ -18,32 +18,10 @@ export class ActualizarUsuarioPage implements OnInit {
     rut: "",
     nombre: "",
     genero: "",
-    estado_civil: "",
-    rol: "",
-    contrato: "",
-    aco: "",
-    nacimiento: "",
-    ingreso: "",
-    division: "",
     centro_costo: "",
-    posicion: "",
-    div_pers: "",
-    funcion: "",
-    organizacion: "",
-    superintendencia: "",
-    gerencia: "",
-    regla_ppl: "",
-    previsiones: "",
-    salud: "",
-    calle: "",
-    villa: "",
-    ciudad: "",
-    comuna: "",
-    telefono: "",
-    region: "",
-    sindicato: "",
-    tipo_socio: "",
-    tipo_usuario: ""
+    ubicacion: "",
+    cargo: "",
+    tipo_usuario: "",
   };
 
   constructor(
@@ -59,10 +37,10 @@ export class ActualizarUsuarioPage implements OnInit {
 
   // OBTENER USUARIO POR ID
   obtenerUsuario() {
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.params.subscribe((params) => {
       let id = params.id;
 
-      this.usuarioService.getUsuario(id).subscribe(resp => {
+      this.usuarioService.getUsuario(id).subscribe((resp) => {
         this.registerUser = resp["usuario"];
       });
     });
@@ -75,7 +53,7 @@ export class ActualizarUsuarioPage implements OnInit {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "¡Faltan campos en el formulario!"
+        text: "¡Faltan campos en el formulario!",
       });
       return;
     }

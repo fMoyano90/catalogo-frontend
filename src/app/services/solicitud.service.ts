@@ -1,7 +1,11 @@
 import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../environments/environment.prod";
-import { RespuestaSolicitudes, Solicitud } from "../interfaces/interfaces";
+import {
+  RespuestaSolicitudes,
+  Solicitud,
+  Convenio,
+} from "../interfaces/interfaces";
 import { UsuarioService } from "./usuario.service";
 import { Storage } from "@ionic/storage";
 import Swal from "sweetalert2";
@@ -67,5 +71,21 @@ export class SolicitudesService {
   // LLAMAR SOLICITUD POR ID
   getSolicitud(id: string) {
     return this.http.get<Solicitud>(`${URL}/solicitudes/obtener/${id}`);
+  }
+  // tipo, lugar, genero, temporada, cargo
+  getEppsConvenioPorTipo(
+    tipo: string,
+    lugar: string,
+    genero: string,
+    temporada: string,
+    cargo: string
+  ) {
+    return this.http.get<Convenio>(
+      `${URL}/convenio/${tipo}/${lugar}/${genero}/${temporada}/${cargo}`
+    );
+  }
+
+  getEppPorCodigo(codigo: string) {
+    return this.http.get<Convenio>(`${URL}/convenio/${codigo}`);
   }
 }

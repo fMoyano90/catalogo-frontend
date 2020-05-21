@@ -1,12 +1,12 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { SolicitudesService } from "../../services/solicitud.service";
-import { Solicitud } from "src/app/interfaces/interfaces";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { SolicitudesService } from '../../services/solicitud.service';
+import { Solicitud } from 'src/app/interfaces/interfaces';
 
 @Component({
-  selector: "app-solicitud",
-  templateUrl: "./solicitud.page.html",
-  styleUrls: ["./solicitud.page.scss"],
+  selector: 'app-solicitud',
+  templateUrl: './solicitud.page.html',
+  styleUrls: ['./solicitud.page.scss'],
 })
 export class SolicitudPage implements OnInit {
   public solicitud: Solicitud;
@@ -26,7 +26,7 @@ export class SolicitudPage implements OnInit {
       let id = params.id;
 
       this.solicitudService.getSolicitud(id).subscribe((resp) => {
-        this.solicitud = resp["solicitud"];
+        this.solicitud = resp['solicitud'];
       });
     });
   }

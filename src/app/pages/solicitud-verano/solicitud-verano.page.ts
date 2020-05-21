@@ -1,88 +1,77 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Usuario, Solicitud } from '../../interfaces/interfaces';
-import { UsuarioService } from '../../services/usuario.service';
-import { SolicitudesService } from '../../services/solicitud.service';
-import { Storage } from '@ionic/storage';
-import Swal from 'sweetalert2';
-
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Usuario, Solicitud, Convenio } from "../../interfaces/interfaces";
+import { UsuarioService } from "../../services/usuario.service";
+import { SolicitudesService } from "../../services/solicitud.service";
+import { Storage } from "@ionic/storage";
+import { HttpClient } from "@angular/common/http";
+import Swal from "sweetalert2";
+import { filter } from "minimatch";
+import { Epp } from "../../interfaces/interfaces";
 @Component({
-  selector: 'app-solicitud-verano',
-  templateUrl: './solicitud-verano.page.html',
-  styleUrls: ['./solicitud-verano.page.scss'],
+  selector: "app-solicitud-verano",
+  templateUrl: "./solicitud-verano.page.html",
+  styleUrls: ["./solicitud-verano.page.scss"],
 })
 export class SolicitudVeranoPage implements OnInit {
   public usuario: any = {};
   public solicitud: Solicitud = {
-    usuarioID: '',
-    nombre: '',
-    rut: '',
-    sap: '',
-    funcion: '',
-    ubicacion: '',
-    epp1: '',
-    tall1: '',
-    epp2: '',
-    tall2: '',
-    epp3: '',
-    tall3: '',
-    epp4: '',
-    tall4: '',
-    epp5: '',
-    tall5: '',
-    epp6: '',
-    tall6: '',
-    epp7: '',
-    tall7: '',
-    epp8: '',
-    tall8: '',
-    epp9: '',
-    tall9: '',
-    epp10: '',
-    tall10: '',
-    epp11: '',
-    tall11: '',
-    epp12: '',
-    tall12: '',
-    epp13: '',
-    tall13: '',
-    epp14: '',
-    tall14: '',
-    epp15: '',
-    tall15: '',
-    temporada: '',
+    usuarioID: "",
+    nombre: "",
+    rut: "",
+    sap: "",
+    genero: "",
+    funcion: "",
+    ubicacion: "",
+    centro_costo: "",
+    lugar_retiro: "",
+    cargo_actual: "",
+    epps: [],
+    temporada: "",
     mes: null,
     anio: null,
   };
 
+  public epp: Epp = {
+    nombre: "",
+    talla: "",
+    codigo: "",
+  };
+
+  // CAMPOS FORMULARIO
+  public zapatos: Convenio[];
+  public zapatosElectricos: Convenio[];
+  public buzos: Convenio[];
+  public buzosMecanicos: Convenio[];
+  public buzosElectricos: Convenio[];
+  public camisas: Convenio[];
+  public camisasElectricos: Convenio[];
+  public camisasPcElect: Convenio[];
+  public pantalonesPc: Convenio[];
+  public pantalones: Convenio[];
+  public parkas: Convenio[];
+
   public userID: string;
-  public tallasZapatos: number[] = [];
-  public tallasBuzos: number[] = [];
-  public tallas: string[];
-  public tallas2: string[];
 
   constructor(
     private usuarioService: UsuarioService,
     private solicitudService: SolicitudesService,
     private activatedRoute: ActivatedRoute,
     private storage: Storage,
-    private route: Router
+    private route: Router,
+    private http: HttpClient
   ) {
     this.obtenerID().then((resp) => {
       this.userID = resp;
     });
-    this.obtenerTallasZapatos();
-    this.obtenerTallasBuzos();
   }
 
   ngOnInit() {
     this.obtenerUsuario();
-    this.tallas = ['S', 'M', 'L', 'XL', 'XXL'];
-    this.tallas2 = ['S', 'M', 'L', 'XL'];
   }
 
   async obtenerID() {
-    return await this.storage.get('userID');
+    return await this.storage.get("userID");
   }
 
   // Obtener usuario por ID
@@ -90,139 +79,120 @@ export class SolicitudVeranoPage implements OnInit {
     const id = await this.obtenerID();
 
     this.usuarioService.getUsuario(id).subscribe((params) => {
-      // tslint:disable-next-line: no-string-literal
-      this.usuario = params['usuario'];
-      console.log(this.usuario);
+      this.usuario = params["usuario"];
+      this.obtenerEppsConvenio();
     });
   }
 
-  // Crear solicitud
-  async enviarSolicitud() {
+  enviarSolicitud() {}
+
+  obtenerEppsConvenio() {
+    // ORDEN DE FILTRADO:
+    // tipo, lugar, genero, temporada, cargo
+    const lugar = this.usuario.ubicacion;
+    const cargo = this.usuario.cargo;
+    const genero = this.usuario.genero;
+    const temporada = "verano";
     const date = new Date();
     const anio = date.getFullYear();
-    const mes = date.getMonth();
-    // MANEJAR LA DATA DE LA SOLICITUD
 
-    this.solicitud.usuarioID = this.userID;
-    this.solicitud.nombre = this.usuario.nombre;
-    this.solicitud.rut = this.usuario.rut;
-    this.solicitud.sap = this.usuario.sap;
-    this.solicitud.funcion = this.usuario.funcion;
-    this.solicitud.ubicacion = this.usuario.div_pers;
-    this.solicitud.temporada = 'VERANO';
-    this.solicitud.anio = anio;
-    this.solicitud.mes = mes;
+    // ZAPATOS
+    this.solicitudService
+      .getEppsConvenioPorTipo("ZAPATO", lugar, genero, temporada, cargo)
+      .subscribe((resp) => {
+        this.zapatos = resp["eppsConvenio"];
+      });
 
-    switch (this.usuario.div_pers) {
-      case 'MINA RAJO':
-        this.solicitud.epp1 = 'ZAPATO DE SEGURIDAD VERANO';
-        this.solicitud.epp2 = 'BUZO PILOTO';
-        this.solicitud.epp3 = 'CAMISA SLACK';
-        this.solicitud.epp4 = 'PANTALON SLACK';
-        this.solicitud.epp5 = 'BANDANA';
-        break;
+    // ZAPATOSELECTRICOS
+    this.solicitudService
+      .getEppsConvenioPorTipo(
+        "ZAPATO_ELECTRICO",
+        lugar,
+        genero,
+        temporada,
+        cargo
+      )
+      .subscribe((resp) => {
+        this.zapatosElectricos = resp["eppsConvenio"];
+      });
 
-      case 'Mina Subterr.':
-        this.solicitud.epp1 = 'ZAPATO DE SEGURIDAD VERANO';
-        this.solicitud.epp2 = 'BUZO PILOTO ANTIGRASA';
-        this.solicitud.epp3 = 'BUZO PILOTO';
-        this.solicitud.epp4 = 'CAMISA SLACK';
-        this.solicitud.epp5 = 'PANTALON SLACK';
-        this.solicitud.epp6 = 'BANDANA';
-        break;
+    // BUZOS
+    this.solicitudService
+      .getEppsConvenioPorTipo("BUZO", lugar, genero, temporada, cargo)
+      .subscribe((resp) => {
+        this.buzos = resp["eppsConvenio"];
+      });
 
-      case 'Concentrador':
-        this.solicitud.epp1 = 'ZAPATO DE SEGURIDAD SIN CHIPORRO';
-        this.solicitud.epp2 = 'BUZO PILOTO ANTIGRASA';
-        this.solicitud.epp3 = 'BUZO PILOTO';
-        this.solicitud.epp4 = 'CAMISA SLACK';
-        this.solicitud.epp5 = 'PANTALON SLACK';
-        this.solicitud.epp6 = 'BANDANA';
-        break;
+    // BUZOS MECANICOS
+    this.solicitudService
+      .getEppsConvenioPorTipo("BUZO_MECANICO", lugar, genero, temporada, cargo)
+      .subscribe((resp) => {
+        this.buzosMecanicos = resp["eppsConvenio"];
+      });
 
-      case 'Plan.Fil. A.Ind':
-        this.solicitud.epp1 = 'ZAPATO DE SEGURIDAD VERANO';
-        this.solicitud.epp2 = 'CAMISA ANTIACIDO';
-        this.solicitud.epp3 = 'PANTALON ANTIACIDO';
-        this.solicitud.epp4 = 'BANDANA';
-        break;
+    // BUZOS ELECTRICOS
+    this.solicitudService
+      .getEppsConvenioPorTipo("BUZO_ELECTRICO", lugar, genero, temporada, cargo)
+      .subscribe((resp) => {
+        this.buzosMecanicos = resp["eppsConvenio"];
+      });
 
-      case 'Saladillo':
-        this.solicitud.epp1 = 'ZAPATO DE SEGURIDAD VERANO';
-        this.solicitud.epp2 = 'CAMISA ANTIACIDO';
-        this.solicitud.epp3 = 'PANTALON ANTIACIDO';
-        this.solicitud.epp4 = 'BANDANA';
-        break;
+    // CAMISAS
+    this.solicitudService
+      .getEppsConvenioPorTipo("CAMISA", lugar, genero, temporada, cargo)
+      .subscribe((resp) => {
+        this.camisas = resp["eppsConvenio"];
+      });
 
-      case 'Los Andes':
-        this.solicitud.epp1 = 'ZAPATO DE SEGURIDAD VERANO';
-        break;
+    // CAMISASELECTRICOS
+    this.solicitudService
+      .getEppsConvenioPorTipo(
+        "CAMISA_ELECTRICO",
+        lugar,
+        genero,
+        temporada,
+        cargo
+      )
+      .subscribe((resp) => {
+        this.camisasElectricos = resp["eppsConvenio"];
+      });
 
-      case 'Huechun A.Ind.':
-        this.solicitud.epp1 = 'ZAPATO DE SEGURIDAD VERANO';
-        this.solicitud.epp2 = 'CAMISA SLACK';
-        this.solicitud.epp3 = 'PANTALON SLACK';
-        this.solicitud.epp4 = 'BANDANA';
-        break;
-    }
+    // PANTALONES
+    this.solicitudService
+      .getEppsConvenioPorTipo("PANTALON", lugar, genero, temporada, cargo)
+      .subscribe((resp) => {
+        this.pantalones = resp["eppsConvenio"];
+      });
 
-    console.log(this.solicitud);
-    const creado = await this.solicitudService.enviarSolicitud(this.solicitud);
+    // PANTALONES PRIMERA CAPA
+    this.solicitudService
+      .getEppsConvenioPorTipo("PANTALON_PC", lugar, genero, temporada, cargo)
+      .subscribe((resp) => {
+        this.pantalonesPc = resp["eppsConvenio"];
+      });
 
-    // LIMPIAR SOLICITUD
-    this.solicitud = {
-      usuarioID: '',
-      nombre: '',
-      rut: '',
-      sap: '',
-      funcion: '',
-      ubicacion: '',
-      epp1: '',
-      tall1: '',
-      epp2: '',
-      tall2: '',
-      epp3: '',
-      tall3: '',
-      epp4: '',
-      tall4: '',
-      epp5: '',
-      tall5: '',
-      epp6: '',
-      tall6: '',
-      epp7: '',
-      tall7: '',
-      epp8: '',
-      tall8: '',
-      epp9: '',
-      tall9: '',
-      epp10: '',
-      tall10: '',
-      epp11: '',
-      tall11: '',
-      epp12: '',
-      tall12: '',
-      epp13: '',
-      tall13: '',
-      epp14: '',
-      tall14: '',
-      epp15: '',
-      tall15: '',
-      temporada: '',
-      mes: null,
-      anio: null,
-    };
+    // CAMISAS PRIMERA CAPA ELECTRICOS
+    this.solicitudService
+      .getEppsConvenioPorTipo(
+        "CAMISA_PC_ELECT",
+        lugar,
+        genero,
+        temporada,
+        cargo
+      )
+      .subscribe((resp) => {
+        this.camisasPcElect = resp["eppsConvenio"];
+      });
 
-    this.route.navigateByUrl('/tabs/tab1');
-  }
-
-  obtenerTallasZapatos() {
-    for (let i = 38; i <= 46; i++) {
-      this.tallasZapatos.push(i);
-    }
-  }
-  obtenerTallasBuzos() {
-    for (let i = 44; i <= 56; i += 2) {
-      this.tallasBuzos.push(i);
+    // PARKAS (CONDICION AÑO POR MEDIO)
+    if (anio % 2 === 1) {
+      this.solicitudService
+        .getEppsConvenioPorTipo("PARKA", lugar, genero, temporada, cargo)
+        .subscribe((resp) => {
+          this.parkas = resp["eppsConvenio"];
+        });
+    } else {
+      this.parkas = null;
     }
   }
 }

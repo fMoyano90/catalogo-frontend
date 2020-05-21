@@ -8,7 +8,7 @@ import { UiServiceService } from "src/app/services/ui-service.service";
 @Component({
   selector: "app-crear-usuario",
   templateUrl: "./crear-usuario.page.html",
-  styleUrls: ["./crear-usuario.page.scss"]
+  styleUrls: ["./crear-usuario.page.scss"],
 })
 export class CrearUsuarioPage implements OnInit {
   registerUser: Usuario = {
@@ -16,32 +16,10 @@ export class CrearUsuarioPage implements OnInit {
     rut: "",
     nombre: "",
     genero: "",
-    estado_civil: "",
-    rol: "",
-    contrato: "",
-    aco: "",
-    nacimiento: "",
-    ingreso: "",
-    division: "",
     centro_costo: "",
-    posicion: "",
-    div_pers: "",
-    funcion: "",
-    organizacion: "",
-    superintendencia: "",
-    gerencia: "",
-    regla_ppl: "",
-    previsiones: "",
-    salud: "",
-    calle: "",
-    villa: "",
-    ciudad: "",
-    comuna: "",
-    telefono: "",
-    region: "",
-    sindicato: "",
-    tipo_socio: "",
-    tipo_usuario: ""
+    ubicacion: "",
+    cargo: "",
+    tipo_usuario: "",
   };
 
   constructor(

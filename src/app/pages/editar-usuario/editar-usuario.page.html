@@ -33,33 +33,67 @@
   <form (ngSubmit)="actualizar(fActualizar)" #fActualizar>
     <ion-row>
       <ion-col>
-
         <ion-list>
-
           <ion-item>
-            <ion-label>Email</ion-label>
-            <ion-input name="email" type="email" [(ngModel)]="usuario.email" required></ion-input>
+            <ion-label>SAP</ion-label>
+            <ion-input name="sap" type="text" [(ngModel)]="usuario.sap" required></ion-input>
           </ion-item>
-
+          <ion-item>
+            <ion-label>RUT</ion-label>
+            <ion-input name="rut" type="text" [(ngModel)]="usuario.rut" required></ion-input>
+          </ion-item>
           <ion-item>
             <ion-label>Nombre</ion-label>
             <ion-input name="nombre" type="text" [(ngModel)]="usuario.nombre" required></ion-input>
           </ion-item>
-
-
+          <ion-item>
+            <ion-label>Genero</ion-label>
+            <ion-select [(ngModel)]="usuario.genero" name="genero" okText="Confirmar" cancelText="Cancelar">
+              <ion-select-option value="hombre">Masculino</ion-select-option>
+              <ion-select-option value="mujer">Femenino</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Centro de costo</ion-label>
+            <ion-input name="centro_costo" type="text" [(ngModel)]="usuario.centro_costo" required></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Ubicación</ion-label>
+            <ion-select [(ngModel)]="usuario.ubicacion" name="ubicacion" okText="Confirmar" cancelText="Cancelar">
+              <ion-select-option value="salacom">Sala Com.</ion-select-option>
+              <ion-select-option value="los_andes">Los Andes</ion-select-option>
+              <ion-select-option value="huechun">Huechun</ion-select-option>
+              <ion-select-option value="saladillo">Saladillo</ion-select-option>
+              <ion-select-option value="planta_filtro">Planta de Filtro</ion-select-option>
+              <ion-select-option value="mina_sub">Mina Subterranea</ion-select-option>
+              <ion-select-option value="concentrador">Concentrador</ion-select-option>
+              <ion-select-option value="sur">Sur</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Cargo</ion-label>
+            <ion-select [(ngModel)]="usuario.cargo" name="cargo" okText="Confirmar" cancelText="Cancelar">
+              <ion-select-option value="electrico">Eléctrico</ion-select-option>
+              <ion-select-option value="mecanico">Mecánico</ion-select-option>
+              <ion-select-option value="general">Otro</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tipo de usuario</ion-label>
+            <ion-select [(ngModel)]="usuario.tipo_usuario" name="tipo_usuario" okText="Confirmar" cancelText="Cancelar">
+              <ion-select-option value="USER_ROLE">Trabajador</ion-select-option>
+              <ion-select-option value="ADMIN_ROLE">Administrador</ion-select-option>
+            </ion-select>
+          </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
-
     <ion-row>
-      <ion-col text-center>
-        <ion-button type="submit" color="tertiary" shape="round">
-          Actualizar
+      <ion-col>
+        <ion-button type="submit" color="uno" shape="round">
+          Editar usuario
         </ion-button>
       </ion-col>
     </ion-row>
-
   </form>
-
-
 </ion-content>
