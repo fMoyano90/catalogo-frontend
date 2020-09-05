@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductosService } from '../../services/productos.service';
-import { Producto } from '../../interfaces/interfaces';
-import { Router } from '@angular/router';
-import { TouchSequence } from 'selenium-webdriver';
-import { UsuarioService } from '../../services/usuario.service';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ProductosService } from "../../services/productos.service";
+import { Producto } from "../../interfaces/interfaces";
+import { Router } from "@angular/router";
+import { TouchSequence } from "selenium-webdriver";
+import { UsuarioService } from "../../services/usuario.service";
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss'],
+  selector: "app-tab1",
+  templateUrl: "tab1.page.html",
+  styleUrls: ["tab1.page.scss"],
 })
-export class Tab1Page implements OnInit {
+export class Tab1Page implements OnInit, OnDestroy {
   productos: Producto[] = [];
   habilitado = true;
   busqueda: string;
@@ -26,6 +26,11 @@ export class Tab1Page implements OnInit {
     this.productosService.nuevoProducto.subscribe((epp) => {
       this.productos.unshift(epp);
     });
+  }
+
+  ngOnDestroy() {
+    this.productos = [];
+    this.siguientes(null, false);
   }
 
   recargar(event: any) {
@@ -49,6 +54,6 @@ export class Tab1Page implements OnInit {
   }
 
   realizarBusqueda(busqueda) {
-    this.router.navigate(['/busqueda', busqueda]);
+    this.router.navigate(["/busqueda", busqueda]);
   }
 }

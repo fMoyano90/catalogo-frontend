@@ -1,11 +1,9 @@
 <ion-header no-border>
   <ion-toolbar color="naranjo">
-    <ion-buttons slot="start">
-      <ion-icon slot="icon-only" name="menu"></ion-icon>
-    </ion-buttons>
+
     <ion-title>SOLICITUD INVIERNO</ion-title>
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+      <ion-back-button text="" defaultHref="tabs/tab1"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -17,16 +15,18 @@
           los datos de la solicitud al correo que nos indiques.</p>
       </ion-col>
     </ion-row>
+    <!--Datos del usuario-->
     <ion-row>
       <ion-col>
         <h3>1. Datos del usuario</h3>
-        <p>codigo:<br> {{usuario.codigo}}</p>
+        <p>Nombre:<br> {{usuario.nombre}}</p>
         <p>RUT: {{usuario.rut}}</p>
         <p>SAP: {{usuario.sap}}</p>
         <p>Ubicación: {{usuario.ubicacion | ubicacion}}</p>
         <p>Centro de costo: {{usuario.centro_costo}}</p>
       </ion-col>
     </ion-row>
+    <!--Formularo solicitud-->
     <form (ngSubmit)="enviarSolicitud(fSolicitud)" #fSolicitud="ngForm">
       <ion-row>
         <ion-col>
@@ -34,80 +34,90 @@
           <ion-list>
             <ion-item *ngIf="buzos && buzos.length != 0">
               <ion-label>BUZO</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="buzo.codigo" required>
-                <ion-select-option *ngFor="let epp of buzos" value="{{epp.epp}}">
+              <ion-select name="nombre" type="text" [(ngModel)]="buzo.nombre" required>
+                <ion-select-option *ngFor="let epp of buzos" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
                   {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="buzosElectricos && buzosElectricos.length != 0">
               <ion-label>BUZO ELECTRICO</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="zapato.codigo" required>
-                <ion-select-option *ngFor="let epp of buzosElectricos" value="{{epp.epp}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="zapato.nombre" required>
+                <ion-select-option *ngFor="let epp of buzosElectricos"
+                  value="{{epp.codigo +','+epp.talla+','+epp.epp}}">{{epp.talla}}
 
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="buzosMecanicos && buzosMecanicos.length != 0">
               <ion-label>BUZO MECANICO</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="buzoMecanico.codigo" required>
-                <ion-select-option *ngFor="let epp of buzosMecanicos" value="{{epp.epp}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="buzoMecanico.nombre" required>
+                <ion-select-option *ngFor="let epp of buzosMecanicos" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
+                  {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="camisas && camisas.length != 0">
               <ion-label>CAMISA</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="camisa.codigo" required>
-                <ion-select-option *ngFor="let epp of camisas" value="{{epp.epp}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="camisa.nombre" required>
+                <ion-select-option *ngFor="let epp of camisas" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
+                  {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="camisasElectricos && camisasElectricos.length != 0">
               <ion-label>CAMISA ELECTRICO</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="camisaElectrico.codigo" required>
-                <ion-select-option *ngFor="let epp of camisas" value="{{epp.epp}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="camisaElectrico.nombre" required>
+                <ion-select-option *ngFor="let epp of camisas" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
+                  {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="pantalonesPc && pantalonesPc.length != 0">
               <ion-label>PRIMERA CAPA PANTALON</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="pantalonPc.codigo" required>
-                <ion-select-option *ngFor="let epp of pantalonesPc" value="{{epp.epp}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="pantalonPc.nombre" required>
+                <ion-select-option *ngFor="let epp of pantalonesPc" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
+                  {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
-            <ion-item *ngIf="camisasPcElect && camisasPcElect.length != 0">
-              <ion-label>PRIMERA CAPA CAMISA</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="camisaPcElect.codigo" required>
-                <ion-select-option *ngFor="let epp of camisasPcElect" value="{{epp.epp}}">{{epp.talla}}
+            <ion-item *ngIf="camisetasPc && camisetasPc.length != 0">
+              <ion-label>PRIMERA CAPA CAMISETA</ion-label>
+              <ion-select name="nombre" type="text" [(ngModel)]="camisetaPc.nombre" required>
+                <ion-select-option *ngFor="let epp of camisetasPc" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
+                  {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="pantalones && pantalones.length != 0">
               <ion-label>PANTALON</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="pantalon.codigo" required>
-                <ion-select-option *ngFor="let epp of pantalones" value="{{epp.epp}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="pantalon.nombre" required>
+                <ion-select-option *ngFor="let epp of pantalones" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
+                  {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="parkas && parkas.length != 0">
               <ion-label>PARKA</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="parka.codigo" required>
-                <ion-select-option *ngFor="let epp of parkas" value="{{epp.epp}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="parka.nombre" required>
+                <ion-select-option *ngFor="let epp of parkas" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
+                  {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="zapatos && zapatos.length != 0">
               <ion-label>ZAPATO</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="zapato.codigo" required>
-                <ion-select-option *ngFor="let epp of zapatos" value="{{epp.codigo}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="zapato.nombre" required>
+                <ion-select-option *ngFor="let epp of zapatos" value="{{epp.codigo +','+epp.talla+','+epp.epp}}">
+                  {{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>
             <ion-item *ngIf="zapatosElectricos && zapatosElectricos.length != 0">
               <ion-label>ZAPATO ELECTRICO</ion-label>
-              <ion-select name="codigo" type="text" [(ngModel)]="zapatoElectrico.codigo" required>
-                <ion-select-option *ngFor="let epp of zapatosElectricos" value="{{epp.epp}}">{{epp.talla}}
+              <ion-select name="nombre" type="text" [(ngModel)]="zapatoElectrico.nombre" required>
+                <ion-select-option *ngFor="let epp of zapatosElectricos"
+                  value="{{epp.codigo +','+epp.talla+','+epp.epp}}">{{epp.talla}}
                 </ion-select-option>
               </ion-select>
             </ion-item>

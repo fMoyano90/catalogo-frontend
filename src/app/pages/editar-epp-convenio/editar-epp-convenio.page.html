@@ -1,0 +1,163 @@
+<ion-header no-border>
+  <ion-toolbar color="naranjo">
+
+    <ion-title>Editar Epp Convenio</ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button text="" defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+
+    <ion-item>
+      <ion-label position="floating">Codigo</ion-label>
+      <ion-input type="text" [(ngModel)]="eppConvenio.codigo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-textarea [(ngModel)]="eppConvenio.epp"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Talla</ion-label>
+      <ion-textarea [(ngModel)]="eppConvenio.talla"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Categoria</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.tipo">
+        <ion-select-option value="BANDANA">Bandana</ion-select-option>
+        <ion-select-option value="BUZO">Buzo General</ion-select-option>
+        <ion-select-option value="BUZO_MECANICO">Buzo Mécanico</ion-select-option>
+        <ion-select-option value="BUZO_ELECTRICO">Buzo Electrico</ion-select-option>
+        <ion-select-option value="CAMISA">Camisa General</ion-select-option>
+        <ion-select-option value="CAMISA_ELECTRICO">Camisa Electrico</ion-select-option>
+        <ion-select-option value="CAMISA_PC_ELECT">Camisa Primera Capa</ion-select-option>
+        <ion-select-option value="PANTALON">Pantalon General</ion-select-option>
+        <ion-select-option value="PANTALON_PC">Pantalon Primera Capa</ion-select-option>
+        <ion-select-option value="PARKA">Parka</ion-select-option>
+        <ion-select-option value="ZAPATO">Zapato General</ion-select-option>
+        <ion-select-option value="ZAPATO_ELECTRICO">Zapato Electrico</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega en sala común?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.salacom">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega en Los Andes?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.los_andes">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega en Huechún?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.huechun">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega en Saladillo?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.saladillo">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega en Planta de Filtro?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.planta_filtro">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega a damas?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.mujer">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega a varones?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.hombre">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega en verano?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.verano">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega en invierno?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.invierno">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega a mecanicos?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.mecanico">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega a electricos?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.electrico">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega a otros cargos?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.general">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>¿Se entrega año por medio?</ion-label>
+      <ion-select interface="alert" okText="Elegir" cancelText="cancelar" [(ngModel)]="eppConvenio.anioxmedio">
+        <ion-select-option value="si">SI</ion-select-option>
+        <ion-select-option value="no">NO</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-row>
+    <ion-col size="6">
+      <ion-button expand="full" shape="round" (click)="editarEpp()" color="uno">
+        <ion-icon slot="start" name="camera"></ion-icon>
+        Editar Epp Convenio
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+
+
+</ion-content>

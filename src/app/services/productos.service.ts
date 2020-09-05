@@ -1,20 +1,20 @@
-import { Injectable, EventEmitter } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment.prod';
-import { RespuestaProductos, Producto } from '../interfaces/interfaces';
-import { UsuarioService } from './usuario.service';
-import { resolve } from 'url';
+import { Injectable, EventEmitter } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from "../../environments/environment.prod";
+import { RespuestaProductos, Producto } from "../interfaces/interfaces";
+import { UsuarioService } from "./usuario.service";
+import { resolve } from "url";
 import {
   FileTransfer,
   FileUploadOptions,
   FileTransferObject,
-} from '@ionic-native/file-transfer/ngx';
-import { Storage } from '@ionic/storage';
+} from "@ionic-native/file-transfer/ngx";
+import { Storage } from "@ionic/storage";
 
 const URL = environment.url;
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class ProductosService {
   paginaProductos = 0;
@@ -75,33 +75,33 @@ export class ProductosService {
 
   crearProducto(epp) {
     const headers = new HttpHeaders({
-      'x-token': this.usuarioService.token,
+      "x-token": this.usuarioService.token,
     });
     this.http.post(`${URL}/productos`, epp, { headers }).subscribe((resp) => {
-      this.nuevoProducto.emit(resp['producto']);
+      this.nuevoProducto.emit(resp["producto"]);
     });
   }
 
   async actualizarProducto(epp, id) {
-    this.storage.get('token').then((resp) => {
+    this.storage.get("token").then((resp) => {
       let token: string;
       token = resp;
 
       const headers = new HttpHeaders({
-        'x-token': token,
+        "x-token": token,
       });
 
       console.log(URL);
 
       this.http.put(`${URL}/productos/${id}`, epp, { headers }).subscribe(
         (resp) => {
-          this.updateProducto.emit(resp['producto']);
+          this.updateProducto.emit(resp["producto"]);
         },
         (error) => {
           console.log(error);
         },
         () => {
-          console.log('Operación completada con exito');
+          console.log("Operación completada con exito");
         }
       );
     });
@@ -109,9 +109,9 @@ export class ProductosService {
 
   subirImagen(img: string) {
     const options: FileUploadOptions = {
-      fileKey: 'image',
+      fileKey: "image",
       headers: {
-        'x-token': this.usuarioService.token,
+        "x-token": this.usuarioService.token,
       },
     };
 
@@ -123,7 +123,7 @@ export class ProductosService {
         console.log(data);
       })
       .catch((err) => {
-        console.log('Error en subir imagen', err);
+        console.log("Error en subir imagen", err);
       });
   }
 

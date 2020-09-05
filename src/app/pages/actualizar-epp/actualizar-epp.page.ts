@@ -38,6 +38,7 @@ export class ActualizarEppPage implements OnInit {
       this.producto,
       id
     );
+    
     console.log(this.producto, id);
     this.producto = {
       material: "",

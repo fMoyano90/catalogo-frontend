@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="naranjo">
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="/historial-solicitudes"></ion-back-button>
+      <ion-back-button text="" defaultHref="/historial-solicitudes"></ion-back-button>
     </ion-buttons>
     <ion-title>SOLICITUD</ion-title>
   </ion-toolbar>
@@ -11,13 +11,21 @@
 <ion-content *ngIf="solicitud">
   <ion-grid>
     <ion-row>
+      <ion-button [routerLink]="['/editar-solicitud', solicitud._id]">
+        Editar Solicitud
+      </ion-button>
+    </ion-row>
+    <ion-row>
+
       <ion-col>
         <h3>1. Datos del trabajador</h3>
         <p>Nombre: {{solicitud.nombre}}</p>
         <p>Rut: {{solicitud.rut}}</p>
         <p>Sap: {{solicitud.sap}}</p>
-        <p>Función: {{solicitud.funcion}}</p>
-        <p>Ubicación: {{solicitud.ubicacion}}</p>
+        <p>Centro Costo: {{solicitud.centro_costo}}</p>
+        <p>Cargo: {{solicitud.cargo_actual}}</p>
+        <p>Retiro: {{solicitud.lugar_retiro}}</p>
+        <p>Transacción: {{solicitud._id}}</p>
       </ion-col>
     </ion-row>
     <ion-row>
@@ -28,58 +36,15 @@
       </ion-col>
     </ion-row>
     <ion-row class="header">
-      <ion-col class="col">Articulo</ion-col>
+      <ion-col class="col">Codigo</ion-col>
+      <ion-col class="col">Epp</ion-col>
       <ion-col class="col">Talla</ion-col>
       <ion-col class="col">Cantidad</ion-col>
     </ion-row>
-    <ion-row *ngIf="solicitud.epp1 != ''">
-      <ion-col class="col">{{solicitud.epp1}}</ion-col>
-      <ion-col class="col">{{solicitud.tall1}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp2 != ''">
-      <ion-col class="col">{{solicitud.epp2}}</ion-col>
-      <ion-col class="col">{{solicitud.tall2}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp3 != ''">
-      <ion-col class="col">{{solicitud.epp3}}</ion-col>
-      <ion-col class="col">{{solicitud.tall3}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp4 != ''">
-      <ion-col class="col">{{solicitud.epp4}}</ion-col>
-      <ion-col class="col">{{solicitud.tall4}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp5 != ''">
-      <ion-col class="col">{{solicitud.epp5}}</ion-col>
-      <ion-col class="col">{{solicitud.tall5}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp6 != ''">
-      <ion-col class="col">{{solicitud.epp6}}</ion-col>
-      <ion-col class="col">{{solicitud.tall6}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp7 != ''">
-      <ion-col class="col">{{solicitud.epp7}}</ion-col>
-      <ion-col class="col">{{solicitud.tall7}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp8 != ''">
-      <ion-col class="col">{{solicitud.epp8}}</ion-col>
-      <ion-col class="col">{{solicitud.tall8}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp9 != ''">
-      <ion-col class="col">{{solicitud.epp9}}</ion-col>
-      <ion-col class="col">{{solicitud.tall9}}</ion-col>
-      <ion-col class="col">1</ion-col>
-    </ion-row>
-    <ion-row *ngIf="solicitud.epp10 != ''">
-      <ion-col class="col">{{solicitud.epp10}}</ion-col>
-      <ion-col class="col">{{solicitud.tall10}}</ion-col>
+    <ion-row *ngFor="let epp of solicitud.epps">
+      <ion-col class="col">{{epp.codigo}}</ion-col>
+      <ion-col class="col">{{epp.nombre}}</ion-col>
+      <ion-col class="col">{{epp.talla}}</ion-col>
       <ion-col class="col">1</ion-col>
     </ion-row>
   </ion-grid>

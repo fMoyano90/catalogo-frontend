@@ -9,7 +9,7 @@ declare var window: any;
 @Component({
   selector: "app-crear-epp",
   templateUrl: "./crear-epp.page.html",
-  styleUrls: ["./crear-epp.page.scss"]
+  styleUrls: ["./crear-epp.page.scss"],
 })
 export class CrearEppPage implements OnInit {
   tempImages: string[] = [];
@@ -19,7 +19,7 @@ export class CrearEppPage implements OnInit {
     descripcion: "",
     categoria: "",
     medida: "",
-    genero: ""
+    genero: "",
   };
 
   actualizar: false;
@@ -41,7 +41,7 @@ export class CrearEppPage implements OnInit {
       descripcion: "",
       categoria: "",
       medida: "",
-      genero: ""
+      genero: "",
     };
 
     this.tempImages = [];
@@ -56,7 +56,7 @@ export class CrearEppPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true,
-      sourceType: this.camera.PictureSourceType.CAMERA
+      sourceType: this.camera.PictureSourceType.CAMERA,
     };
 
     this.procesarImagen(options);
@@ -69,7 +69,7 @@ export class CrearEppPage implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       correctOrientation: true,
-      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
     };
 
     this.procesarImagen(options);
@@ -77,13 +77,13 @@ export class CrearEppPage implements OnInit {
 
   procesarImagen(options: CameraOptions) {
     this.camera.getPicture(options).then(
-      imageData => {
+      (imageData) => {
         const img = window.Ionic.WebView.convertFileSrc(imageData);
         console.log(img);
         this.productosService.subirImagen(imageData);
         this.tempImages.push(img);
       },
-      err => {
+      (err) => {
         // error
         console.log(err);
       }

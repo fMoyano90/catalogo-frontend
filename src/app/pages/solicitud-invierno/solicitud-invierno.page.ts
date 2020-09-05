@@ -1,14 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Usuario, Solicitud, Convenio } from "../../interfaces/interfaces";
+import { Router } from "@angular/router";
+import { Solicitud, Convenio } from "../../interfaces/interfaces";
 import { UsuarioService } from "../../services/usuario.service";
 import { SolicitudesService } from "../../services/solicitud.service";
 import { Storage } from "@ionic/storage";
-import { HttpClient } from "@angular/common/http";
-import Swal from "sweetalert2";
-import { filter } from "minimatch";
+
 import { Epp } from "../../interfaces/interfaces";
-import { pluck } from "rxjs/operators";
+
 @Component({
   selector: "app-solicitud-invierno",
   templateUrl: "./solicitud-invierno.page.html",
@@ -40,10 +38,11 @@ export class SolicitudInviernoPage implements OnInit {
   public buzoElectrico: Epp = { codigo: null, nombre: "", talla: "" };
   public camisa: Epp = { codigo: null, nombre: "", talla: "" };
   public camisaElectrico: Epp = { codigo: null, nombre: "", talla: "" };
-  public camisaPcElect: Epp = { codigo: null, nombre: "", talla: "" };
+  public camisetaPc: Epp = { codigo: null, nombre: "", talla: "" };
   public pantalon: Epp = { codigo: null, nombre: "", talla: "" };
   public pantalonPc: Epp = { codigo: null, nombre: "", talla: "" };
   public parka: Epp = { codigo: null, nombre: "", talla: "" };
+  public bandana: Epp = { codigo: null, nombre: "", talla: "" };
 
   // CAMPOS FORMULARIO
   public zapatos: Convenio[];
@@ -53,7 +52,7 @@ export class SolicitudInviernoPage implements OnInit {
   public buzosElectricos: Convenio[];
   public camisas: Convenio[];
   public camisasElectricos: Convenio[];
-  public camisasPcElect: Convenio[];
+  public camisetasPc: Convenio[];
   public pantalonesPc: Convenio[];
   public pantalones: Convenio[];
   public parkas: Convenio[];
@@ -63,10 +62,8 @@ export class SolicitudInviernoPage implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private solicitudService: SolicitudesService,
-    private activatedRoute: ActivatedRoute,
     private storage: Storage,
-    private route: Router,
-    private http: HttpClient
+    private route: Router
   ) {
     this.obtenerID().then((resp) => {
       this.userID = resp;
@@ -93,43 +90,106 @@ export class SolicitudInviernoPage implements OnInit {
 
   // ENVIAR SOLICITUD CONVENIO
   enviarSolicitud(form) {
+    // PREPARAR DATOS DE SOLICITUD
     const date = new Date();
     this.solicitud.usuarioID = this.usuario._id;
     this.solicitud.nombre = this.usuario.nombre;
     this.solicitud.rut = this.usuario.rut;
     this.solicitud.sap = this.usuario.sap;
     this.solicitud.genero = this.usuario.genero;
-    this.solicitud.funcion = this.usuario.funcion;
+    this.solicitud.funcion = this.usuario.cargo;
     this.solicitud.ubicacion = this.usuario.ubicacion;
     this.solicitud.centro_costo = this.usuario.centro_costo;
-    this.solicitud.temporada = this.usuario.temporada;
+    this.solicitud.temporada = "Invierno";
     this.solicitud.mes = date.getMonth();
     this.solicitud.anio = date.getFullYear();
 
-    // Obtener datos de los epp escogidos
-    if (this.zapato.codigo) {
-      this.buscarEppPorCodigo(this.zapato.codigo).subscribe((resp) => {
-        console.log(resp);
-      });
+    if (this.zapato.nombre != "") {
+      let epp = this.zapato.nombre.split(",");
+      this.zapato.codigo = parseInt(epp[0]);
+      this.zapato.talla = epp[1];
+      this.zapato.nombre = epp[2];
+      this.solicitud.epps.push(this.zapato);
     }
-    // Insertar epps en el campo epps de la solicitud
-    this.solicitud.epps.push(
-      this.zapato,
-      this.zapatoElectrico,
-      this.buzo,
-      this.buzoMecanico,
-      this.buzoElectrico,
-      this.camisa,
-      this.camisaElectrico,
-      this.camisaPcElect,
-      this.pantalon,
-      this.pantalonPc,
-      this.parka
-    );
+    if (this.zapatoElectrico.nombre != "") {
+      let epp = this.zapatoElectrico.nombre.split(",");
+      this.zapatoElectrico.codigo = parseInt(epp[0]);
+      this.zapatoElectrico.talla = epp[1];
+      this.zapatoElectrico.nombre = epp[2];
+      this.solicitud.epps.push(this.zapatoElectrico);
+    }
+    if (this.buzo.nombre != "") {
+      let epp = this.buzo.nombre.split(",");
+      this.buzo.codigo = parseInt(epp[0]);
+      this.buzo.talla = epp[1];
+      this.buzo.nombre = epp[2];
+      this.solicitud.epps.push(this.buzo);
+    }
+    if (this.buzoMecanico.nombre != "") {
+      let epp = this.buzoMecanico.nombre.split(",");
+      this.buzoMecanico.codigo = parseInt(epp[0]);
+      this.buzoMecanico.talla = epp[1];
+      this.buzoMecanico.nombre = epp[2];
+      this.solicitud.epps.push(this.buzoMecanico);
+    }
+    if (this.buzoElectrico.nombre != "") {
+      let epp = this.buzoElectrico.nombre.split(",");
+      this.buzoElectrico.codigo = parseInt(epp[0]);
+      this.buzoElectrico.talla = epp[1];
+      this.buzoElectrico.nombre = epp[2];
+      this.solicitud.epps.push(this.buzoElectrico);
+    }
+    if (this.camisa.nombre != "") {
+      let epp = this.camisa.nombre.split(",");
+      this.camisa.codigo = parseInt(epp[0]);
+      this.camisa.talla = epp[1];
+      this.camisa.nombre = epp[2];
+      this.solicitud.epps.push(this.camisa);
+    }
+    if (this.camisaElectrico.nombre != "") {
+      let epp = this.camisaElectrico.nombre.split(",");
+      this.camisaElectrico.codigo = parseInt(epp[0]);
+      this.camisaElectrico.talla = epp[1];
+      this.camisaElectrico.nombre = epp[2];
+      this.solicitud.epps.push(this.camisaElectrico);
+    }
+    if (this.camisetaPc.nombre != "") {
+      let epp = this.camisetaPc.nombre.split(",");
+      this.camisetaPc.codigo = parseInt(epp[0]);
+      this.camisetaPc.talla = epp[1];
+      this.camisetaPc.nombre = epp[2];
+      this.solicitud.epps.push(this.camisetaPc);
+    }
+    if (this.pantalonPc.nombre != "") {
+      let epp = this.pantalonPc.nombre.split(",");
+      this.pantalonPc.codigo = parseInt(epp[0]);
+      this.pantalonPc.talla = epp[1];
+      this.pantalonPc.nombre = epp[2];
+      this.solicitud.epps.push(this.pantalonPc);
+    }
+    if (this.pantalon.nombre != "") {
+      let epp = this.pantalon.nombre.split(",");
+      this.pantalon.codigo = parseInt(epp[0]);
+      this.pantalon.talla = epp[1];
+      this.pantalon.nombre = epp[2];
+      this.solicitud.epps.push(this.pantalon);
+    }
+    if (this.parka.nombre != "") {
+      let epp = this.parka.nombre.split(",");
+      this.parka.codigo = parseInt(epp[0]);
+      this.parka.talla = epp[1];
+      this.parka.nombre = epp[2];
+      this.solicitud.epps.push(this.parka);
+    }
+
+    this.bandana.codigo = 4175212;
+    this.bandana.talla = "N/A";
+    this.bandana.nombre = "BANDANA MULTIFUNCIONAL ALTA CORDILLERA";
+    this.solicitud.epps.push(this.bandana);
 
     // Enviar solicitud para guardar a servicio y retornar respuestas
-
-    console.log(this.solicitud);
+    this.solicitudService.enviarSolicitud(this.solicitud);
+    this.route.navigateByUrl("/tabs/tab1");
   }
 
   // OBTENER EPPS CONVENIO
@@ -229,7 +289,7 @@ export class SolicitudInviernoPage implements OnInit {
         this.pantalonesPc = resp["eppsConvenio"];
       });
 
-    // CAMISAS PRIMERA CAPA ELECTRICOS
+    // CAMISETAS PRIMERAS CAPAS
     this.solicitudService
       .getEppsConvenioPorTipo(
         "CAMISA_PC_ELECT",
@@ -239,7 +299,7 @@ export class SolicitudInviernoPage implements OnInit {
         cargo
       )
       .subscribe((resp) => {
-        this.camisasPcElect = resp["eppsConvenio"];
+        this.camisetasPc = resp["eppsConvenio"];
       });
 
     // PARKAS (CONDICION AÑO POR MEDIO)
@@ -252,9 +312,5 @@ export class SolicitudInviernoPage implements OnInit {
     } else {
       this.parkas = null;
     }
-  }
-
-  buscarEppPorCodigo(codigo) {
-    return this.solicitudService.getEppPorCodigo(codigo);
   }
 }

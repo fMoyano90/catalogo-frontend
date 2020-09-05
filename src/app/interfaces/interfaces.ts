@@ -1,9 +1,12 @@
-import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
-
 export interface RespuestaProductos {
   ok: boolean;
   pagina: number;
   productos: Producto[];
+}
+export interface RespuestaEppsConvenio {
+  ok: boolean;
+  pagina: number;
+  epps: EppConvenio[];
 }
 
 export interface RespuestaUsuarios {
@@ -87,4 +90,25 @@ export interface Epp {
   codigo: number;
   talla: string;
   nombre: string;
+}
+
+export interface EppConvenio {
+  codigo: string;
+  epp: string;
+  salacom: string;
+  los_andes: string;
+  huechun: string;
+  saladillo: string;
+  planta_filtro: string;
+  hombre: string;
+  mujer: string;
+  verano: string;
+  invierno: string;
+  mecanico: string;
+  electrico: string;
+  general: string;
+  anioxmedio: string;
+  tipo: string;
+  talla: string;
+  _id?: string;
 }

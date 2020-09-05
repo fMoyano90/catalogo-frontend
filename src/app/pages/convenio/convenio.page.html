@@ -1,7 +1,7 @@
 <ion-header no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+      <ion-back-button text="Volver" defaultHref="tabs/tab1"></ion-back-button>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button color="dos" (click)="logout()">
@@ -18,11 +18,11 @@
       <ion-col id="ingresoSolicitud">
         <h1>Convenio Trabajadores</h1>
         <p>Solicita tu equipo de protección personal</p>
-        <ion-button [disabled]="invierno" routerLink="/solicitud-invierno" color="dos" expand="block">SOLICITUD PERIODO
+        <ion-button routerLink="/solicitud-invierno" color="dos" expand="block">SOLICITUD PERIODO
           INVIERNO
         </ion-button>
         <p>(Abierto entre Enero y Marzo)</p>
-        <ion-button [disabled]="verano" routerLink="/solicitud-verano" color="naranjo" expand="block">SOLICITUD PERIODO
+        <ion-button routerLink="/solicitud-verano" color="naranjo" expand="block">SOLICITUD PERIODO
           VERANO</ion-button>
         <p>(Abierto entre Julio y Septiembre)</p>
       </ion-col>
@@ -45,8 +45,14 @@
           <ion-button expand="block" color="uno" routerLink="/crear-usuario">
             <ion-icon slot="start" name="person-add"></ion-icon> Crear Usuario
           </ion-button>
+          <ion-button expand="block" color="uno" routerLink="/crear-epp-convenio">
+            <ion-icon slot="start" name="add-circle-outline"></ion-icon> Crear Epp Convenio
+          </ion-button>
           <ion-button expand="block" color="dos" routerLink="/usuarios">
             <ion-icon slot="start" name="people"></ion-icon> Gestión Usuarios
+          </ion-button>
+          <ion-button expand="block" color="dos" routerLink="/epps-convenio">
+            <ion-icon slot="start" name="hand"></ion-icon> Gestión Epps Convenio
           </ion-button>
           <ion-button expand="block" color="tres" routerLink="/historial-solicitudes">
             <ion-icon slot="start" name="time"></ion-icon> Historial Solicitudes

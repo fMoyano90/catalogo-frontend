@@ -13,7 +13,7 @@ export const environment = {
   // HEROKU
   //url: "https://catalogo-codelco.herokuapp.com"
   // DIGITAL OCEAN
-  url: "http://167.172.148.161:3001"
+  url: "http://159.203.186.135:3001",
 };
 
 /*

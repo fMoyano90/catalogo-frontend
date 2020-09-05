@@ -1,0 +1,63 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="actualizarSolicitud(solicitud._id)" color="uno">
+        Editar Solicitud
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label position="floating">Nombre:</ion-label>
+      <ion-input type="text" [(ngModel)]="solicitud.nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Rut:</ion-label>
+      <ion-input type="text" [(ngModel)]="solicitud.rut"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Sap:</ion-label>
+      <ion-input type="text" [(ngModel)]="solicitud.sap"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Genero:</ion-label>
+      <ion-input type="text" [(ngModel)]="solicitud.genero"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Funcion:</ion-label>
+      <ion-input type="text" [(ngModel)]="solicitud.cargo_actual"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Ubicación:</ion-label>
+      <ion-input type="text" [(ngModel)]="solicitud.lugar_retiro"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Centro de Costo:</ion-label>
+      <ion-input type="text" [(ngModel)]="solicitud.centro_costo"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Temporada:</ion-label>
+      <ion-input type="text" [(ngModel)]="solicitud.temporada"></ion-input>
+    </ion-item>
+    <ion-item-group *ngFor="let epp of solicitud.epps">
+      <ion-item>
+        <ion-label position="floating">Nombre EPP:</ion-label>
+        <ion-input type="text" [(ngModel)]="epp.nombre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Codigo EPP:</ion-label>
+        <ion-input type="text" [(ngModel)]="epp.codigo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Talla EPP:</ion-label>
+        <ion-input type="text" [(ngModel)]="epp.talla"></ion-input>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+</ion-content>

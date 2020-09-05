@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="naranjo">
     <ion-buttons slot="end">
-      <ion-back-button defaultHref="tabs/tab1"></ion-back-button>
+      <ion-back-button text="" defaultHref="tabs/tab1"></ion-back-button>
     </ion-buttons>
     <ion-title>HISTORIAL SOLICITUDES</ion-title>
   </ion-toolbar>
@@ -20,16 +20,19 @@
         </ion-item>
       </ion-col>
     </ion-row>
+    <ion-row *ngIf="anio">
+      <ion-button (click)="descargarExcel(anio)">Descargar Año en Excel</ion-button>
+    </ion-row>
     <ion-row *ngIf="anio && solicitudes">
       <ion-col>
         <ion-list>
           <ion-item *ngFor="let solicitud of solicitudes">
             <ion-label slot="start">{{solicitud.nombre}}</ion-label>
             <ion-label>
-              <ion-button color="primary" *ngIf="solicitud.temporada == 'INVIERNO'">
+              <ion-button color="primary" *ngIf="solicitud.temporada == 'Invierno'">
                 <ion-icon name="rainy"></ion-icon>
               </ion-button>
-              <ion-button color="naranjo" *ngIf="solicitud.temporada == 'VERANO'">
+              <ion-button color="naranjo" *ngIf="solicitud.temporada == 'Verano'">
                 <ion-icon name="sunny"></ion-icon>
               </ion-button>
             </ion-label>

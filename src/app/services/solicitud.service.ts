@@ -59,13 +59,19 @@ export class SolicitudesService {
     );
   }
 
-  // LLAMAR HISTORIAL DE SOLICITUDES POR AÑO
+  // LLAMAR HISTORIAL DE SOLICITUDES POR AÑO PAGINADO
   getSolicitudesPorAnio(anio: number, pull: boolean = false) {
     if (pull) {
       this.paginaSolicitudes = 0;
     }
     this.paginaSolicitudes++;
     return this.http.get<RespuestaSolicitudes>(`${URL}/solicitudes/${anio}`);
+  }
+  // LLAMAR TODAS LAS SOLICITUDES POR AÑO PARA CSV
+  getSolicitudesPorAnioCompleto(anio: number) {
+    return this.http.get<RespuestaSolicitudes>(
+      `${URL}/solicitudes/${anio}/completo`
+    );
   }
 
   // LLAMAR SOLICITUD POR ID
@@ -87,5 +93,48 @@ export class SolicitudesService {
 
   getEppPorCodigo(codigo: string) {
     return this.http.get<Convenio>(`${URL}/convenio/${codigo}`);
+  }
+
+  // OBTENER ÚLTIMA SOLICITUD POR ID DE USUARIO Y TEMPORADA
+  getUltimaSolicitudUsuario(usuarioID: string, temporada: string) {
+    return this.http.get<Solicitud>(
+      `${URL}/solicitudes/${usuarioID}/${temporada}`
+    );
+  }
+
+  // EDITAR SOLICITUD
+  actualizarSolicitud(id, solicitud) {
+    this.storage.get("token").then((resp) => {
+      let token: string;
+      token = resp;
+
+      const headers = new HttpHeaders({
+        "x-token": token,
+      });
+
+      this.http
+        .put(`${URL}/solicitudes/editar/${id}`, solicitud, { headers })
+        .subscribe(
+          (resp) => {
+            Swal.fire({
+              icon: "success",
+              title: "¡Buen Trabajo!",
+              text: "La solicitud fue editada.",
+            });
+            console.log(resp);
+          },
+          (error) => {
+            Swal.fire({
+              icon: "error",
+              title: "Ups...",
+              text: "Ocurrio un problema, intenta más tarde.",
+            });
+            console.log(error);
+          },
+          () => {
+            console.log("Operación completada con exito");
+          }
+        );
+    });
   }
 }
